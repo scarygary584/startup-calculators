@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://startupcalculators.com/sitemap.xml
+Sitemap: https://startupprofitcalculators.com/sitemap.xml
