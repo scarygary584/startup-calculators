@@ -1,0 +1,44 @@
+{
+  "redirects": [
+    {
+      "source": "/lawn-mowing-pricing-calculator/index.html",
+      "destination": "/lawn-mowing-pricing-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/commercial-hvac-coil-cleaning-profit-calculator/index.html",
+      "destination": "/commercial-hvac-coil-cleaning-profit-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/junk-removal-pricing-calculator/index.html",
+      "destination": "/junk-removal-pricing-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/food-truck-startup-cost-calculator/index.html",
+      "destination": "/food-truck-startup-cost-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/mobile-dog-grooming-profit-calculator/index.html",
+      "destination": "/mobile-dog-grooming-profit-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/window-tinting-business-profit-calculator/index.html",
+      "destination": "/window-tinting-business-profit-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/fence-staining-business-profit-calculator/index.html",
+      "destination": "/fence-staining-business-profit-calculator/",
+      "permanent": true
+    },
+    {
+      "source": "/pricing-estimate-calculators/index.html",
+      "destination": "/pricing-estimate-calculators/",
+      "permanent": true
+    }
+  ]
+}
