@@ -13,227 +13,56 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body class="theme-home">
-    <header class="site-header">
-      <nav class="nav">
-        <a class="brand" href="index.html"><span class="brand-mark">SC</span><span>Startup Profit Calculators</span></a>
-        <div class="nav-links"><a href="#calculator">Calculator</a><a href="#calculators">All Calculators</a><a href="#disclaimer">Disclaimer</a></div>
-      </nav>
-    </header>
-
+    <header class="site-header"><nav class="nav"><a class="brand" href="index.html"><span class="brand-mark">SC</span><span>Startup Profit Calculators</span></a><div class="nav-links"><a href="#calculator">Calculator</a><a href="#calculators">All Calculators</a><a href="#disclaimer">Disclaimer</a></div></nav></header>
     <main>
       <section class="hero home-calculator-hero" id="calculator">
-        <div>
-          <p class="eyebrow">Free business calculator</p>
-          <h1>Startup Profit Calculator</h1>
-          <p class="lede">Estimate startup costs, monthly expenses, revenue, break-even jobs, and potential monthly profit.</p>
-          <p class="small-note">Enter rough numbers. Results update automatically.</p>
-        </div>
-
+        <div><p class="eyebrow">Free business calculator</p><h1>Startup Profit Calculator</h1><p class="lede">Estimate startup costs, monthly expenses, revenue, break-even jobs, and potential monthly profit.</p><p class="small-note">Enter rough numbers. Results update automatically.</p></div>
         <div class="home-calculator-panel">
           <form class="calculator-card" id="startupProfitForm">
-            <div class="field">
-              <label for="startupCosts">Startup costs</label>
-              <input id="startupCosts" name="startupCosts" type="number" value="5000" min="0" step="100" />
-            </div>
-            <div class="field">
-              <label for="monthlyExpenses">Monthly expenses</label>
-              <input id="monthlyExpenses" name="monthlyExpenses" type="number" value="1200" min="0" step="50" />
-            </div>
-            <div class="field">
-              <label for="averageSale">Average sale or job price</label>
-              <input id="averageSale" name="averageSale" type="number" value="150" min="0" step="10" />
-            </div>
-            <div class="field">
-              <label for="jobsPerMonth">Jobs or sales per month</label>
-              <input id="jobsPerMonth" name="jobsPerMonth" type="number" value="30" min="0" step="1" />
-            </div>
-            <div class="field">
-              <label for="jobCost">Average cost per job</label>
-              <input id="jobCost" name="jobCost" type="number" value="35" min="0" step="5" />
-            </div>
+            <div class="field"><label for="startupCosts">Startup costs</label><input id="startupCosts" name="startupCosts" type="number" value="5000" min="0" step="100" /></div>
+            <div class="field"><label for="monthlyExpenses">Monthly expenses</label><input id="monthlyExpenses" name="monthlyExpenses" type="number" value="1200" min="0" step="50" /></div>
+            <div class="field"><label for="averageSale">Average sale or job price</label><input id="averageSale" name="averageSale" type="number" value="150" min="0" step="10" /></div>
+            <div class="field"><label for="jobsPerMonth">Jobs or sales per month</label><input id="jobsPerMonth" name="jobsPerMonth" type="number" value="30" min="0" step="1" /></div>
+            <div class="field"><label for="jobCost">Average cost per job</label><input id="jobCost" name="jobCost" type="number" value="35" min="0" step="5" /></div>
           </form>
-
-          <aside class="results-card" aria-live="polite">
-            <div class="result-row featured"><span>Estimated monthly profit</span><strong id="monthlyProfitResult">$0</strong></div>
-            <div class="result-row"><span>Monthly revenue</span><strong id="monthlyRevenueResult">$0</strong></div>
-            <div class="result-row"><span>Monthly gross profit</span><strong id="grossProfitResult">$0</strong></div>
-            <div class="result-row"><span>Break-even jobs per month</span><strong id="breakEvenJobsResult">0</strong></div>
-            <div class="result-row"><span>Months to recover startup costs</span><strong id="paybackResult">0</strong></div>
-          </aside>
+          <aside class="results-card" aria-live="polite"><div class="result-row featured"><span>Estimated monthly profit</span><strong id="monthlyProfitResult">$0</strong></div><div class="result-row"><span>Monthly revenue</span><strong id="monthlyRevenueResult">$0</strong></div><div class="result-row"><span>Monthly gross profit</span><strong id="grossProfitResult">$0</strong></div><div class="result-row"><span>Break-even jobs per month</span><strong id="breakEvenJobsResult">0</strong></div><div class="result-row"><span>Months to recover startup costs</span><strong id="paybackResult">0</strong></div></aside>
         </div>
       </section>
 
-      <section class="section">
-        <div class="content-card simple-content">
-          <h2>How this calculator works</h2>
-          <p>Monthly revenue = average sale price × jobs or sales per month.</p>
-          <p>Monthly gross profit = monthly revenue − average cost per job × jobs or sales per month.</p>
-          <p>Estimated monthly profit = monthly gross profit − monthly expenses.</p>
-          <p>Break-even jobs = monthly expenses ÷ profit per job.</p>
-        </div>
-      </section>
+      <section class="section"><div class="content-card simple-content"><h2>How this calculator works</h2><p>Monthly revenue = average sale price × jobs or sales per month.</p><p>Monthly gross profit = monthly revenue − average cost per job × jobs or sales per month.</p><p>Estimated monthly profit = monthly gross profit − monthly expenses.</p><p>Break-even jobs = monthly expenses ÷ profit per job.</p></div></section>
 
-      <section class="section" id="calculators">
-        <div class="section-heading">
-          <p class="eyebrow">Calculator library</p>
-          <h2>Business startup calculators</h2>
-          <p>Free calculators for startup costs, pricing, job estimates, equipment payback, AI businesses, local services, rentals, food businesses, and skilled trades.</p>
-        </div>
-        <div class="related-links">
-          <a href="startup-cost-calculators/index.html">Startup Cost Calculators</a>
-          <a href="pricing-estimate-calculators/index.html">Pricing &amp; Estimate Calculators</a>
-          <a href="#ai-startups">AI Startup Calculators</a>
-          <a href="#local-services">Local Services</a>
-          <a href="#rental-businesses">Rental Businesses</a>
-          <a href="#b2b-services">B2B Services</a>
-          <a href="#food-events-experiences">Food, Events &amp; Experiences</a>
-          <a href="#skilled-trades-equipment">Skilled Trades &amp; Equipment</a>
-        </div>
-      </section>
+      <section class="section" id="calculators"><div class="section-heading"><p class="eyebrow">Calculator library</p><h2>Business startup calculators</h2><p>Free calculators for startup costs, pricing, job estimates, equipment payback, AI businesses, local services, rentals, food businesses, and skilled trades.</p></div><div class="related-links"><a href="startup-cost-calculators/index.html">Startup Cost Calculators</a><a href="pricing-estimate-calculators/index.html">Pricing &amp; Estimate Calculators</a><a href="#new-calculators">New Calculators</a><a href="#ai-startups">AI Startup Calculators</a><a href="#local-services">Local Services</a><a href="#rental-businesses">Rental Businesses</a><a href="#b2b-services">B2B Services</a><a href="#food-events-experiences">Food, Events &amp; Experiences</a><a href="#skilled-trades-equipment">Skilled Trades &amp; Equipment</a></div></section>
 
-      <section class="section">
-        <div class="section-heading">
-          <p class="eyebrow">Popular calculators</p>
-          <h2>Common business calculators</h2>
-        </div>
-        <div class="tile-grid compact-grid">
-          <a class="calc-tile theme-lawn" href="lawn-mowing-pricing-calculator/index.html"><span class="badge">Lawn</span><h3>Lawn Mowing Pricing Calculator</h3><p>Estimate job price, cost, profit, and profit per hour.</p></a>
-          <a class="calc-tile theme-pressure" href="commercial-hvac-coil-cleaning-profit-calculator/index.html"><span class="badge">HVAC</span><h3>Commercial HVAC Profit Margin Calculator</h3><p>Estimate coil cleaning revenue, costs, margins, and payback.</p></a>
-          <a class="calc-tile theme-junk" href="junk-removal-pricing-calculator/index.html"><span class="badge">Junk</span><h3>Junk Removal Estimate Calculator</h3><p>Estimate dump fees, labor, fuel, markup, and job price.</p></a>
-          <a class="calc-tile theme-pressure" href="pressure-washing-business-profit-calculator/index.html"><span class="badge">Pressure</span><h3>Pressure Washing Business Profit Calculator</h3><p>Estimate revenue, job costs, profit, and profit per hour.</p></a>
-          <a class="calc-tile theme-equipment" href="equipment-payback-calculator/index.html"><span class="badge">Equipment</span><h3>Equipment Payback Calculator</h3><p>Estimate jobs and weeks needed to pay off equipment.</p></a>
-          <a class="calc-tile theme-foodtruck" href="food-truck-startup-cost-calculator/index.html"><span class="badge">Food Truck</span><h3>Food Truck Startup Cost Calculator</h3><p>Estimate truck, buildout, permits, inventory, and launch costs.</p></a>
-        </div>
-      </section>
+      <section class="section" id="new-calculators"><div class="section-heading"><p class="eyebrow">New calculators</p><h2>New business calculators</h2></div><div class="tile-grid compact-grid">
+        <a class="calc-tile theme-equipment" href="screen-printing-t-shirt-business-profit-calculator/index.html"><span class="badge">T-Shirts</span><h3>Screen Printing T-Shirt Business Profit Calculator</h3><p>Estimate order revenue, shirt costs, supplies, labor, monthly profit, and equipment payback.</p></a>
+        <a class="calc-tile theme-stump" href="house-painting-business-profit-calculator/index.html"><span class="badge">Painting</span><h3>House Painting Business Profit Calculator</h3><p>Estimate job revenue, paint costs, labor, monthly profit, and margin.</p></a>
+        <a class="calc-tile theme-pressure" href="window-washing-business-profit-calculator/index.html"><span class="badge">Windows</span><h3>Window Washing Business Profit Calculator</h3><p>Estimate route revenue, supplies, fuel, profit per hour, and startup payback.</p></a>
+        <a class="calc-tile theme-stump" href="deck-building-business-profit-calculator/index.html"><span class="badge">Decks</span><h3>Deck Building Business Profit Calculator</h3><p>Estimate deck revenue, materials, crew cost, monthly profit, and payback.</p></a>
+        <a class="calc-tile theme-striping" href="fence-building-business-profit-calculator/index.html"><span class="badge">Fences</span><h3>Fence Building Business Profit Calculator</h3><p>Estimate linear-foot revenue, material costs, labor, and monthly profit.</p></a>
+        <a class="calc-tile theme-equipment" href="epoxy-countertop-business-profit-calculator/index.html"><span class="badge">Epoxy</span><h3>Epoxy Countertop Business Profit Calculator</h3><p>Estimate countertop revenue, resin costs, labor, callback reserve, and profit.</p></a>
+        <a class="calc-tile theme-100k" href="mobile-notary-business-profit-calculator/index.html"><span class="badge">Notary</span><h3>Mobile Notary Business Profit Calculator</h3><p>Estimate appointment revenue, travel fees, fuel, supplies, and monthly profit.</p></a>
+        <a class="calc-tile theme-lawn" href="pet-waste-removal-business-profit-calculator/index.html"><span class="badge">Pet Waste</span><h3>Pet Waste Removal Business Profit Calculator</h3><p>Estimate route revenue, recurring customers, supplies, labor, and profit.</p></a>
+        <a class="calc-tile theme-foodtruck" href="christmas-window-painting-profit-calculator/index.html"><span class="badge">Window Art</span><h3>Christmas Window Painting Profit Calculator</h3><p>Estimate seasonal revenue, supplies, labor, profit per hour, and total profit.</p></a>
+        <a class="calc-tile theme-equipment" href="mobile-welding-business-profit-calculator/index.html"><span class="badge">Welding</span><h3>Mobile Welding Business Profit Calculator</h3><p>Estimate service-call revenue, consumables, truck costs, and equipment payback.</p></a>
+      </div></section>
 
-      <section class="section" id="ai-startups">
-        <div class="section-heading"><p class="eyebrow">AI startups</p><h2>AI Startup Calculators</h2></div>
-        <div class="tile-grid compact-grid">
-          <a class="calc-tile theme-equipment" href="ai-voice-agent-business-profit-calculator/index.html"><span class="badge">Voice AI</span><h3>AI Voice Agent Business Profit Calculator</h3><p>Estimate retainers, setup fees, call minutes, software costs, support time, and profit.</p></a>
-          <a class="calc-tile theme-pressure" href="ai-chatbot-agency-profit-calculator/index.html"><span class="badge">Chatbots</span><h3>AI Chatbot Agency Profit Calculator</h3><p>Estimate setup fees, retainers, message costs, platform costs, and profit.</p></a>
-          <a class="calc-tile theme-vending" href="ai-automation-agency-pricing-calculator/index.html"><span class="badge">Automation</span><h3>AI Automation Agency Pricing Calculator</h3><p>Estimate setup fees, retainers, software costs, API costs, support time, and profit.</p></a>
-          <a class="calc-tile theme-100k" href="ai-api-cost-calculator/index.html"><span class="badge">API Costs</span><h3>AI API Cost Calculator</h3><p>Estimate AI app costs from users, requests, tokens, model pricing, retries, and overhead.</p></a>
-        </div>
-      </section>
+      <section class="section"><div class="section-heading"><p class="eyebrow">Popular calculators</p><h2>Common business calculators</h2></div><div class="tile-grid compact-grid"><a class="calc-tile theme-lawn" href="lawn-mowing-pricing-calculator/index.html"><span class="badge">Lawn</span><h3>Lawn Mowing Pricing Calculator</h3><p>Estimate job price, cost, profit, and profit per hour.</p></a><a class="calc-tile theme-pressure" href="commercial-hvac-coil-cleaning-profit-calculator/index.html"><span class="badge">HVAC</span><h3>Commercial HVAC Profit Margin Calculator</h3><p>Estimate coil cleaning revenue, costs, margins, and payback.</p></a><a class="calc-tile theme-junk" href="junk-removal-pricing-calculator/index.html"><span class="badge">Junk</span><h3>Junk Removal Estimate Calculator</h3><p>Estimate dump fees, labor, fuel, markup, and job price.</p></a><a class="calc-tile theme-pressure" href="pressure-washing-business-profit-calculator/index.html"><span class="badge">Pressure</span><h3>Pressure Washing Business Profit Calculator</h3><p>Estimate revenue, job costs, profit, and profit per hour.</p></a><a class="calc-tile theme-equipment" href="equipment-payback-calculator/index.html"><span class="badge">Equipment</span><h3>Equipment Payback Calculator</h3><p>Estimate jobs and weeks needed to pay off equipment.</p></a><a class="calc-tile theme-foodtruck" href="food-truck-startup-cost-calculator/index.html"><span class="badge">Food Truck</span><h3>Food Truck Startup Cost Calculator</h3><p>Estimate truck, buildout, permits, inventory, and launch costs.</p></a></div></section>
 
-      <section class="section" id="local-services">
-        <div class="section-heading"><p class="eyebrow">Local services</p><h2>Local Service Business Calculators</h2></div>
-        <div class="tile-grid compact-grid">
-          <a class="calc-tile theme-junk" href="junk-removal-pricing-calculator/index.html"><span class="badge">Junk</span><h3>Junk Removal Estimate Calculator</h3><p>Build a rough junk removal quote.</p></a>
-          <a class="calc-tile theme-pressure" href="pressure-washing-business-profit-calculator/index.html"><span class="badge">Pressure</span><h3>Pressure Washing Business Profit Calculator</h3><p>Estimate job costs, revenue, and profit.</p></a>
-          <a class="calc-tile theme-lawn" href="lawn-mowing-pricing-calculator/index.html"><span class="badge">Lawn</span><h3>Lawn Mowing Pricing Calculator</h3><p>Estimate price, cost, and profit per hour.</p></a>
-          <a class="calc-tile theme-100k" href="first-100k-service-business-calculator/index.html"><span class="badge">$100K</span><h3>First $100K Service Business Calculator</h3><p>Estimate jobs, leads, weeks, and rough profit.</p></a>
-          <a class="calc-tile theme-foodtruck" href="christmas-light-installation-profit-calculator/index.html"><span class="badge">Christmas Lights</span><h3>Christmas Light Installation Profit Calculator</h3><p>Estimate seasonal revenue, materials, labor, and profit.</p></a>
-          <a class="calc-tile theme-vending" href="mobile-knife-sharpening-profit-calculator/index.html"><span class="badge">Knife Sharpening</span><h3>Mobile Knife Sharpening Profit Calculator</h3><p>Estimate tickets, customer volume, consumables, and payback.</p></a>
-          <a class="calc-tile theme-equipment" href="garage-organization-business-profit-calculator/index.html"><span class="badge">Garage Org</span><h3>Garage Organization Business Profit Calculator</h3><p>Estimate project revenue, materials, labor, and monthly profit.</p></a>
-          <a class="calc-tile theme-pressure" href="mobile-car-detailing-profit-calculator/index.html"><span class="badge">Detailing</span><h3>Mobile Car Detailing Profit Calculator</h3><p>Estimate ticket size, route volume, supplies, fuel, and profit.</p></a>
-          <a class="calc-tile theme-lawn" href="gutter-cleaning-route-profit-calculator/index.html"><span class="badge">Gutters</span><h3>Gutter Cleaning Route Profit Calculator</h3><p>Estimate route revenue, fuel, labor, supplies, and profit.</p></a>
-          <a class="calc-tile theme-stump" href="fence-staining-business-profit-calculator/index.html"><span class="badge">Fence Stain</span><h3>Fence Staining Business Profit Calculator</h3><p>Estimate square-foot revenue, stain cost, labor, and profit.</p></a>
-          <a class="calc-tile theme-equipment" href="appliance-repair-business-profit-calculator/index.html"><span class="badge">Appliance Repair</span><h3>Appliance Repair Business Profit Calculator</h3><p>Estimate service calls, repairs, parts markup, and tool payback.</p></a>
-          <a class="calc-tile theme-bounce" href="mobile-dog-grooming-profit-calculator/index.html"><span class="badge">Dog Grooming</span><h3>Mobile Dog Grooming Business Startup Cost Calculator</h3><p>Estimate grooming revenue, van costs, supplies, insurance, and payback.</p></a>
-          <a class="calc-tile theme-foodtruck" href="seasonal-porch-decorating-business-profit-calculator/index.html"><span class="badge">Porch Decor</span><h3>Seasonal Porch Decorating Business Profit Calculator</h3><p>Estimate seasonal package revenue, materials, labor, and profit.</p></a>
-          <a class="calc-tile theme-striping" href="mailbox-installation-repair-business-profit-calculator/index.html"><span class="badge">Mailbox</span><h3>Mailbox Installation and Repair Business Profit Calculator</h3><p>Estimate repairs, installs, materials, callbacks, and profit.</p></a>
-          <a class="calc-tile theme-junk" href="grill-cleaning-business-profit-calculator/index.html"><span class="badge">Grill Cleaning</span><h3>Grill Cleaning Business Profit Calculator</h3><p>Estimate jobs, upsells, supplies, travel, and seasonal profit.</p></a>
-        </div>
-      </section>
+      <section class="section" id="ai-startups"><div class="section-heading"><p class="eyebrow">AI startups</p><h2>AI Startup Calculators</h2></div><div class="tile-grid compact-grid"><a class="calc-tile theme-equipment" href="ai-voice-agent-business-profit-calculator/index.html"><span class="badge">Voice AI</span><h3>AI Voice Agent Business Profit Calculator</h3><p>Estimate retainers, setup fees, call minutes, software costs, support time, and profit.</p></a><a class="calc-tile theme-pressure" href="ai-chatbot-agency-profit-calculator/index.html"><span class="badge">Chatbots</span><h3>AI Chatbot Agency Profit Calculator</h3><p>Estimate setup fees, retainers, message costs, platform costs, and profit.</p></a><a class="calc-tile theme-vending" href="ai-automation-agency-pricing-calculator/index.html"><span class="badge">Automation</span><h3>AI Automation Agency Pricing Calculator</h3><p>Estimate setup fees, retainers, software costs, API costs, support time, and profit.</p></a><a class="calc-tile theme-100k" href="ai-api-cost-calculator/index.html"><span class="badge">API Costs</span><h3>AI API Cost Calculator</h3><p>Estimate AI app costs from users, requests, tokens, model pricing, retries, and overhead.</p></a></div></section>
 
-      <section class="section" id="rental-businesses">
-        <div class="section-heading"><p class="eyebrow">Rental businesses</p><h2>Rental Business Calculators</h2></div>
-        <div class="tile-grid compact-grid">
-          <a class="calc-tile theme-bounce" href="bounce-house-rental-profit-calculator/index.html"><span class="badge">Bounce</span><h3>Bounce House Rental Profit Calculator</h3><p>Estimate monthly rental revenue, costs, and payback.</p></a>
-          <a class="calc-tile theme-bounce" href="backyard-movie-theater-rental-profit-calculator/index.html"><span class="badge">Movie Rentals</span><h3>Backyard Movie Theater Rental Profit Calculator</h3><p>Estimate package revenue, event costs, setup time, and payback.</p></a>
-          <a class="calc-tile theme-stump" href="mobile-sauna-business-calculator/index.html"><span class="badge">Mobile Sauna</span><h3>Mobile Sauna Business Calculator</h3><p>Estimate bookings, operating costs, profit, and payback.</p></a>
-          <a class="calc-tile theme-bounce" href="photo-booth-rental-profit-calculator/index.html"><span class="badge">Photo Booth</span><h3>Photo Booth Rental Profit Calculator</h3><p>Estimate event revenue, staffing, travel, software, and payback.</p></a>
-          <a class="calc-tile theme-equipment" href="washer-dryer-rental-business-profit-calculator/index.html"><span class="badge">Washer Dryer</span><h3>Washer and Dryer Rental Business Profit Calculator</h3><p>Estimate recurring rental revenue, repairs, delivery, churn, and payback.</p></a>
-          <a class="calc-tile theme-stump" href="mobile-sauna-cold-plunge-rental-profit-calculator/index.html"><span class="badge">Sauna + Plunge</span><h3>Mobile Sauna and Cold Plunge Rental Profit Calculator</h3><p>Estimate private rentals, events, add-ons, expenses, and payback.</p></a>
-        </div>
-      </section>
+      <section class="section" id="local-services"><div class="section-heading"><p class="eyebrow">Local services</p><h2>Local Service Business Calculators</h2></div><div class="tile-grid compact-grid"><a class="calc-tile theme-junk" href="junk-removal-pricing-calculator/index.html"><span class="badge">Junk</span><h3>Junk Removal Estimate Calculator</h3><p>Build a rough junk removal quote.</p></a><a class="calc-tile theme-pressure" href="pressure-washing-business-profit-calculator/index.html"><span class="badge">Pressure</span><h3>Pressure Washing Business Profit Calculator</h3><p>Estimate job costs, revenue, and profit.</p></a><a class="calc-tile theme-lawn" href="lawn-mowing-pricing-calculator/index.html"><span class="badge">Lawn</span><h3>Lawn Mowing Pricing Calculator</h3><p>Estimate price, cost, and profit per hour.</p></a><a class="calc-tile theme-pressure" href="window-washing-business-profit-calculator/index.html"><span class="badge">Windows</span><h3>Window Washing Business Profit Calculator</h3><p>Estimate route revenue and profit.</p></a><a class="calc-tile theme-stump" href="house-painting-business-profit-calculator/index.html"><span class="badge">Painting</span><h3>House Painting Business Profit Calculator</h3><p>Estimate house painting profit and margin.</p></a><a class="calc-tile theme-lawn" href="pet-waste-removal-business-profit-calculator/index.html"><span class="badge">Pet Waste</span><h3>Pet Waste Removal Business Profit Calculator</h3><p>Estimate recurring route profit.</p></a><a class="calc-tile theme-100k" href="first-100k-service-business-calculator/index.html"><span class="badge">$100K</span><h3>First $100K Service Business Calculator</h3><p>Estimate jobs, leads, weeks, and rough profit.</p></a><a class="calc-tile theme-vending" href="mobile-knife-sharpening-profit-calculator/index.html"><span class="badge">Knife Sharpening</span><h3>Mobile Knife Sharpening Profit Calculator</h3><p>Estimate tickets, customers, consumables, and payback.</p></a><a class="calc-tile theme-pressure" href="mobile-car-detailing-profit-calculator/index.html"><span class="badge">Detailing</span><h3>Mobile Car Detailing Profit Calculator</h3><p>Estimate route volume, supplies, fuel, and profit.</p></a><a class="calc-tile theme-lawn" href="gutter-cleaning-route-profit-calculator/index.html"><span class="badge">Gutters</span><h3>Gutter Cleaning Route Profit Calculator</h3><p>Estimate route revenue, labor, supplies, and profit.</p></a><a class="calc-tile theme-stump" href="fence-staining-business-profit-calculator/index.html"><span class="badge">Fence Stain</span><h3>Fence Staining Business Profit Calculator</h3><p>Estimate square-foot revenue and profit.</p></a><a class="calc-tile theme-equipment" href="appliance-repair-business-profit-calculator/index.html"><span class="badge">Appliance Repair</span><h3>Appliance Repair Business Profit Calculator</h3><p>Estimate calls, repairs, markup, and payback.</p></a><a class="calc-tile theme-bounce" href="mobile-dog-grooming-profit-calculator/index.html"><span class="badge">Dog Grooming</span><h3>Mobile Dog Grooming Business Startup Cost Calculator</h3><p>Estimate grooming revenue and payback.</p></a><a class="calc-tile theme-striping" href="mailbox-installation-repair-business-profit-calculator/index.html"><span class="badge">Mailbox</span><h3>Mailbox Installation and Repair Business Profit Calculator</h3><p>Estimate installs, materials, callbacks, and profit.</p></a><a class="calc-tile theme-junk" href="grill-cleaning-business-profit-calculator/index.html"><span class="badge">Grill Cleaning</span><h3>Grill Cleaning Business Profit Calculator</h3><p>Estimate jobs, upsells, supplies, and profit.</p></a></div></section>
 
-      <section class="section" id="b2b-services">
-        <div class="section-heading"><p class="eyebrow">B2B services</p><h2>B2B Service Business Calculators</h2></div>
-        <div class="tile-grid compact-grid">
-          <a class="calc-tile theme-foodtruck" href="cold-cake-campaign-roi-calculator/index.html"><span class="badge">Cake Outreach</span><h3>Corporate Cake Outreach Campaign Profit Calculator</h3><p>Estimate outreach cost, meetings, customers, revenue, profit, and ROI.</p></a>
-          <a class="calc-tile theme-stump" href="b2b-stump-grinding-business-profit-calculator/index.html"><span class="badge">B2B Stump</span><h3>B2B Stump Grinding Business Profit Calculator</h3><p>Estimate referral work, rental costs, job expenses, and profit.</p></a>
-          <a class="calc-tile theme-pressure" href="commercial-hvac-coil-cleaning-profit-calculator/index.html"><span class="badge">HVAC Margin</span><h3>Commercial HVAC Profit Margin Calculator</h3><p>Estimate recurring contracts, revenue, labor, supplies, and margin.</p></a>
-          <a class="calc-tile theme-equipment" href="drone-roof-documentation-business-profit-calculator/index.html"><span class="badge">Drone Roof Docs</span><h3>Drone Roof Documentation Business Profit Calculator</h3><p>Estimate report revenue, referral fees, software, travel, ads, and profit.</p></a>
-        </div>
-      </section>
+      <section class="section" id="rental-businesses"><div class="section-heading"><p class="eyebrow">Rental businesses</p><h2>Rental Business Calculators</h2></div><div class="tile-grid compact-grid"><a class="calc-tile theme-bounce" href="bounce-house-rental-profit-calculator/index.html"><span class="badge">Bounce</span><h3>Bounce House Rental Profit Calculator</h3><p>Estimate rental revenue, costs, and payback.</p></a><a class="calc-tile theme-bounce" href="backyard-movie-theater-rental-profit-calculator/index.html"><span class="badge">Movie Rentals</span><h3>Backyard Movie Theater Rental Profit Calculator</h3><p>Estimate event revenue, costs, and payback.</p></a><a class="calc-tile theme-stump" href="mobile-sauna-business-calculator/index.html"><span class="badge">Mobile Sauna</span><h3>Mobile Sauna Business Calculator</h3><p>Estimate bookings, costs, profit, and payback.</p></a><a class="calc-tile theme-bounce" href="photo-booth-rental-profit-calculator/index.html"><span class="badge">Photo Booth</span><h3>Photo Booth Rental Profit Calculator</h3><p>Estimate event revenue, staffing, travel, and payback.</p></a><a class="calc-tile theme-equipment" href="washer-dryer-rental-business-profit-calculator/index.html"><span class="badge">Washer Dryer</span><h3>Washer and Dryer Rental Business Profit Calculator</h3><p>Estimate recurring rental revenue and payback.</p></a><a class="calc-tile theme-stump" href="mobile-sauna-cold-plunge-rental-profit-calculator/index.html"><span class="badge">Sauna + Plunge</span><h3>Mobile Sauna and Cold Plunge Rental Profit Calculator</h3><p>Estimate rentals, events, add-ons, and payback.</p></a></div></section>
 
-      <section class="section" id="food-events-experiences">
-        <div class="section-heading"><p class="eyebrow">Food, events, and experiences</p><h2>Food, Event, and Experience Business Calculators</h2></div>
-        <div class="tile-grid compact-grid">
-          <a class="calc-tile theme-vending" href="vending-machine-profit-calculator/index.html"><span class="badge">Vending</span><h3>Vending Machine Profit Calculator</h3><p>Estimate gross profit, net profit, and machine payback.</p></a>
-          <a class="calc-tile theme-foodtruck" href="food-truck-startup-cost-calculator/index.html"><span class="badge">Food Truck</span><h3>Food Truck Startup Cost Calculator</h3><p>Estimate truck, buildout, permits, inventory, insurance, and launch costs.</p></a>
-          <a class="calc-tile theme-lawn" href="golf-hole-in-one-challenge-profit-calculator/index.html"><span class="badge">Golf Event</span><h3>Golf Hole-in-One Challenge Profit Calculator</h3><p>Estimate entry revenue, sponsor revenue, prize insurance, costs, and profit.</p></a>
-          <a class="calc-tile theme-striping" href="radio-controlled-construction-experience-profit-calculator/index.html"><span class="badge">RC Construction</span><h3>Radio Controlled Construction Experience Business Profit Calculator</h3><p>Estimate sessions, parties, corporate events, booth fees, labor, and payback.</p></a>
-          <a class="calc-tile theme-foodtruck" href="parking-lot-pizza-oven-business-profit-calculator/index.html"><span class="badge">Pizza Oven</span><h3>Parking Lot Pizza Oven Business Profit Calculator</h3><p>Estimate pizza sales, food costs, permits, helper labor, location fees, and profit.</p></a>
-        </div>
-      </section>
+      <section class="section" id="b2b-services"><div class="section-heading"><p class="eyebrow">B2B services</p><h2>B2B Service Business Calculators</h2></div><div class="tile-grid compact-grid"><a class="calc-tile theme-foodtruck" href="cold-cake-campaign-roi-calculator/index.html"><span class="badge">Cake Outreach</span><h3>Corporate Cake Outreach Campaign Profit Calculator</h3><p>Estimate outreach cost, meetings, revenue, profit, and ROI.</p></a><a class="calc-tile theme-stump" href="b2b-stump-grinding-business-profit-calculator/index.html"><span class="badge">B2B Stump</span><h3>B2B Stump Grinding Business Profit Calculator</h3><p>Estimate referral work, rental costs, expenses, and profit.</p></a><a class="calc-tile theme-pressure" href="commercial-hvac-coil-cleaning-profit-calculator/index.html"><span class="badge">HVAC Margin</span><h3>Commercial HVAC Profit Margin Calculator</h3><p>Estimate contracts, revenue, labor, supplies, and margin.</p></a><a class="calc-tile theme-equipment" href="drone-roof-documentation-business-profit-calculator/index.html"><span class="badge">Drone Roof Docs</span><h3>Drone Roof Documentation Business Profit Calculator</h3><p>Estimate report revenue, fees, software, ads, and profit.</p></a><a class="calc-tile theme-equipment" href="screen-printing-t-shirt-business-profit-calculator/index.html"><span class="badge">T-Shirts</span><h3>Screen Printing T-Shirt Business Profit Calculator</h3><p>Estimate order revenue and equipment payback.</p></a></div></section>
 
-      <section class="section" id="skilled-trades-equipment">
-        <div class="section-heading"><p class="eyebrow">Skilled trades and equipment</p><h2>Skilled Trades and Equipment Business Calculators</h2></div>
-        <div class="tile-grid compact-grid">
-          <a class="calc-tile theme-striping" href="parking-lot-striping-profit-calculator/index.html"><span class="badge">Striping</span><h3>Parking Lot Striping Profit Calculator</h3><p>Estimate line revenue, symbol revenue, and profit before overhead.</p></a>
-          <a class="calc-tile theme-equipment" href="equipment-payback-calculator/index.html"><span class="badge">Equipment</span><h3>Equipment Payback Calculator</h3><p>Estimate jobs and weeks needed to pay off equipment.</p></a>
-          <a class="calc-tile theme-stump" href="stump-grinding-profit-calculator/index.html"><span class="badge">Stump</span><h3>Stump Grinding Profit Calculator</h3><p>Estimate per-job profit and monthly profit after equipment payment.</p></a>
-          <a class="calc-tile theme-pressure" href="plumbing-business-startup-cost-calculator/index.html"><span class="badge">Plumbing</span><h3>Plumbing Business Startup Cost Calculator</h3><p>Estimate licensing, tools, vehicle needs, insurance, marketing, and cushion.</p></a>
-          <a class="calc-tile theme-equipment" href="hvac-business-startup-cost-calculator/index.html"><span class="badge">HVAC</span><h3>HVAC Business Startup Cost Calculator</h3><p>Estimate certifications, diagnostic tools, vehicle setup, insurance, and working capital.</p></a>
-          <a class="calc-tile theme-striping" href="electrical-contractor-startup-cost-calculator/index.html"><span class="badge">Electrical</span><h3>Electrical Contractor Startup Cost Calculator</h3><p>Estimate licensing, tools, meters, vehicle setup, insurance, permits, and cushion.</p></a>
-          <a class="calc-tile theme-stump" href="pest-control-business-startup-calculator/index.html"><span class="badge">Pest Control</span><h3>Pest Control Business Startup Calculator</h3><p>Estimate licensing, equipment, chemicals, insurance, vehicle setup, and launch marketing.</p></a>
-          <a class="calc-tile theme-junk" href="towing-business-startup-calculator/index.html"><span class="badge">Towing</span><h3>Towing Business Startup Calculator</h3><p>Estimate truck cost, gear, insurance, permits, dispatch setup, and working capital.</p></a>
-          <a class="calc-tile theme-striping" href="epoxy-garage-floor-business-profit-calculator/index.html"><span class="badge">Garage Floors</span><h3>Epoxy Garage Floor Business Profit Calculator</h3><p>Estimate coating revenue, material cost, labor, ad spend, close rate, and payback.</p></a>
-          <a class="calc-tile theme-vending" href="window-tinting-business-profit-calculator/index.html"><span class="badge">Tinting</span><h3>Window Tinting Business Profit Calculator</h3><p>Estimate tint revenue, film cost, labor, overhead, ad spend, and payback.</p></a>
-        </div>
-      </section>
+      <section class="section" id="food-events-experiences"><div class="section-heading"><p class="eyebrow">Food, events, and experiences</p><h2>Food, Event, and Experience Business Calculators</h2></div><div class="tile-grid compact-grid"><a class="calc-tile theme-vending" href="vending-machine-profit-calculator/index.html"><span class="badge">Vending</span><h3>Vending Machine Profit Calculator</h3><p>Estimate profit and machine payback.</p></a><a class="calc-tile theme-foodtruck" href="food-truck-startup-cost-calculator/index.html"><span class="badge">Food Truck</span><h3>Food Truck Startup Cost Calculator</h3><p>Estimate truck, permits, inventory, and launch costs.</p></a><a class="calc-tile theme-lawn" href="golf-hole-in-one-challenge-profit-calculator/index.html"><span class="badge">Golf Event</span><h3>Golf Hole-in-One Challenge Profit Calculator</h3><p>Estimate entry revenue, sponsor revenue, prize insurance, and profit.</p></a><a class="calc-tile theme-striping" href="radio-controlled-construction-experience-profit-calculator/index.html"><span class="badge">RC Construction</span><h3>Radio Controlled Construction Experience Business Profit Calculator</h3><p>Estimate sessions, parties, events, labor, and payback.</p></a><a class="calc-tile theme-foodtruck" href="parking-lot-pizza-oven-business-profit-calculator/index.html"><span class="badge">Pizza Oven</span><h3>Parking Lot Pizza Oven Business Profit Calculator</h3><p>Estimate sales, food costs, permits, labor, and profit.</p></a><a class="calc-tile theme-foodtruck" href="christmas-window-painting-profit-calculator/index.html"><span class="badge">Window Art</span><h3>Christmas Window Painting Profit Calculator</h3><p>Estimate seasonal window painting profit.</p></a></div></section>
 
-      <section class="section" id="disclaimer">
-        <div class="disclaimer">These calculators are rough planning tools. They are not legal, tax, financial, licensing, or business advice. Local rules, insurance, taxes, permit requirements, and real-world costs may vary.</div>
-      </section>
+      <section class="section" id="skilled-trades-equipment"><div class="section-heading"><p class="eyebrow">Skilled trades and equipment</p><h2>Skilled Trades and Equipment Business Calculators</h2></div><div class="tile-grid compact-grid"><a class="calc-tile theme-striping" href="parking-lot-striping-profit-calculator/index.html"><span class="badge">Striping</span><h3>Parking Lot Striping Profit Calculator</h3><p>Estimate line revenue and profit.</p></a><a class="calc-tile theme-equipment" href="equipment-payback-calculator/index.html"><span class="badge">Equipment</span><h3>Equipment Payback Calculator</h3><p>Estimate jobs and weeks to pay off equipment.</p></a><a class="calc-tile theme-stump" href="stump-grinding-profit-calculator/index.html"><span class="badge">Stump</span><h3>Stump Grinding Profit Calculator</h3><p>Estimate job and monthly profit.</p></a><a class="calc-tile theme-pressure" href="plumbing-business-startup-cost-calculator/index.html"><span class="badge">Plumbing</span><h3>Plumbing Business Startup Cost Calculator</h3><p>Estimate tools, vehicle, insurance, and launch costs.</p></a><a class="calc-tile theme-equipment" href="hvac-business-startup-cost-calculator/index.html"><span class="badge">HVAC</span><h3>HVAC Business Startup Cost Calculator</h3><p>Estimate tools, certifications, vehicle setup, and working capital.</p></a><a class="calc-tile theme-striping" href="electrical-contractor-startup-cost-calculator/index.html"><span class="badge">Electrical</span><h3>Electrical Contractor Startup Cost Calculator</h3><p>Estimate licensing, tools, vehicle, and permits.</p></a><a class="calc-tile theme-stump" href="pest-control-business-startup-calculator/index.html"><span class="badge">Pest Control</span><h3>Pest Control Business Startup Calculator</h3><p>Estimate licensing, equipment, chemicals, and launch marketing.</p></a><a class="calc-tile theme-junk" href="towing-business-startup-calculator/index.html"><span class="badge">Towing</span><h3>Towing Business Startup Calculator</h3><p>Estimate truck cost, gear, permits, and dispatch setup.</p></a><a class="calc-tile theme-striping" href="epoxy-garage-floor-business-profit-calculator/index.html"><span class="badge">Garage Floors</span><h3>Epoxy Garage Floor Business Profit Calculator</h3><p>Estimate coating revenue, materials, labor, and payback.</p></a><a class="calc-tile theme-vending" href="window-tinting-business-profit-calculator/index.html"><span class="badge">Tinting</span><h3>Window Tinting Business Profit Calculator</h3><p>Estimate tint revenue, film costs, labor, and payback.</p></a><a class="calc-tile theme-stump" href="deck-building-business-profit-calculator/index.html"><span class="badge">Decks</span><h3>Deck Building Business Profit Calculator</h3><p>Estimate deck project profit.</p></a><a class="calc-tile theme-striping" href="fence-building-business-profit-calculator/index.html"><span class="badge">Fences</span><h3>Fence Building Business Profit Calculator</h3><p>Estimate fence project profit.</p></a><a class="calc-tile theme-equipment" href="mobile-welding-business-profit-calculator/index.html"><span class="badge">Welding</span><h3>Mobile Welding Business Profit Calculator</h3><p>Estimate service call profit and payback.</p></a><a class="calc-tile theme-equipment" href="epoxy-countertop-business-profit-calculator/index.html"><span class="badge">Epoxy</span><h3>Epoxy Countertop Business Profit Calculator</h3><p>Estimate countertop epoxy profit.</p></a></div></section>
+
+      <section class="section" id="disclaimer"><div class="disclaimer">These calculators are rough planning tools. They are not legal, tax, financial, licensing, or business advice. Local rules, insurance, taxes, permit requirements, and real-world costs may vary.</div></section>
     </main>
-
-    <footer class="site-footer">
-      <div class="footer-inner"><p><strong>Startup Profit Calculators</strong></p><p>Free startup cost, pricing, estimate, and profit calculators.</p></div>
-    </footer>
-
-    <script>
-      (function () {
-        const money = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
-        const number = new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 });
-        const fields = ["startupCosts", "monthlyExpenses", "averageSale", "jobsPerMonth", "jobCost"];
-        const getValue = (id) => {
-          const input = document.getElementById(id);
-          const value = Number(input && input.value ? input.value : 0);
-          return Number.isFinite(value) ? value : 0;
-        };
-        const setText = (id, value) => {
-          const el = document.getElementById(id);
-          if (el) el.textContent = value;
-        };
-        const calculate = () => {
-          const startupCosts = getValue("startupCosts");
-          const monthlyExpenses = getValue("monthlyExpenses");
-          const averageSale = getValue("averageSale");
-          const jobsPerMonth = getValue("jobsPerMonth");
-          const jobCost = getValue("jobCost");
-          const monthlyRevenue = averageSale * jobsPerMonth;
-          const monthlyJobCosts = jobCost * jobsPerMonth;
-          const grossProfit = monthlyRevenue - monthlyJobCosts;
-          const monthlyProfit = grossProfit - monthlyExpenses;
-          const profitPerJob = averageSale - jobCost;
-          const breakEvenJobs = profitPerJob > 0 ? Math.ceil(monthlyExpenses / profitPerJob) : 0;
-          const paybackMonths = monthlyProfit > 0 ? startupCosts / monthlyProfit : 0;
-          setText("monthlyProfitResult", money.format(monthlyProfit));
-          setText("monthlyRevenueResult", money.format(monthlyRevenue));
-          setText("grossProfitResult", money.format(grossProfit));
-          setText("breakEvenJobsResult", profitPerJob > 0 ? number.format(breakEvenJobs) : "N/A");
-          setText("paybackResult", monthlyProfit > 0 ? number.format(paybackMonths) : "N/A");
-        };
-        fields.forEach((id) => {
-          const input = document.getElementById(id);
-          if (input) input.addEventListener("input", calculate);
-        });
-        calculate();
-      })();
-    </script>
+    <footer class="site-footer"><div class="footer-inner"><p><strong>Startup Profit Calculators</strong></p><p>Free startup cost, pricing, estimate, and profit calculators.</p></div></footer>
+    <script>(function(){const money=new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0});const number=new Intl.NumberFormat("en-US",{maximumFractionDigits:1});const fields=["startupCosts","monthlyExpenses","averageSale","jobsPerMonth","jobCost"];const getValue=id=>{const input=document.getElementById(id);const value=Number(input&&input.value?input.value:0);return Number.isFinite(value)?value:0};const setText=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value};const calculate=()=>{const startupCosts=getValue("startupCosts");const monthlyExpenses=getValue("monthlyExpenses");const averageSale=getValue("averageSale");const jobsPerMonth=getValue("jobsPerMonth");const jobCost=getValue("jobCost");const monthlyRevenue=averageSale*jobsPerMonth;const monthlyJobCosts=jobCost*jobsPerMonth;const grossProfit=monthlyRevenue-monthlyJobCosts;const monthlyProfit=grossProfit-monthlyExpenses;const profitPerJob=averageSale-jobCost;const breakEvenJobs=profitPerJob>0?Math.ceil(monthlyExpenses/profitPerJob):0;const paybackMonths=monthlyProfit>0?startupCosts/monthlyProfit:0;setText("monthlyProfitResult",money.format(monthlyProfit));setText("monthlyRevenueResult",money.format(monthlyRevenue));setText("grossProfitResult",money.format(grossProfit));setText("breakEvenJobsResult",profitPerJob>0?number.format(breakEvenJobs):"N/A");setText("paybackResult",monthlyProfit>0?number.format(paybackMonths):"N/A")};fields.forEach(id=>{const input=document.getElementById(id);if(input)input.addEventListener("input",calculate)});calculate()})();</script>
   </body>
 </html>
