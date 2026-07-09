@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Voice Agent Business Profit Calculator | Client Retainers & Call Costs</title>
+  <meta name="description" content="Estimate AI voice agent business profit from client retainers, setup fees, call volume, voice minutes, software costs, phone numbers, outreach, and monthly expenses." />
+  <link rel="canonical" href="https://www.startupprofitcalculators.com/ai-voice-agent-business-profit-calculator/" />
+  <meta property="og:title" content="AI Voice Agent Business Profit Calculator" />
+  <meta property="og:description" content="Estimate AI receptionist revenue, client retainers, setup fees, call minute costs, software expenses, and monthly profit." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.startupprofitcalculators.com/ai-voice-agent-business-profit-calculator/" />
+  <link rel="stylesheet" href="../styles.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I estimate profit for an AI voice agent business?","acceptedAnswer":{"@type":"Answer","text":"Estimate monthly client retainers, setup fees, call volume, average minutes per call, voice or telephony cost per minute, software costs, phone numbers, outreach costs, and other monthly expenses. Profit is revenue minus operating costs."}},{"@type":"Question","name":"What costs should an AI receptionist business include?","acceptedAnswer":{"@type":"Answer","text":"Common costs include voice agent platform fees, call minutes, phone numbers, CRM or automation software, call recording/storage, testing minutes, client support time, outreach tools, and payment processing."}},{"@type":"Question","name":"Should I charge a setup fee for AI voice agents?","acceptedAnswer":{"@type":"Answer","text":"Many agencies include a setup fee because onboarding usually requires business information, call scripts, FAQs, routing rules, testing, and revisions. Whether the market will accept it depends on the niche and offer."}},{"@type":"Question","name":"Can this calculator guarantee AI voice agent income?","acceptedAnswer":{"@type":"Answer","text":"No. This is a rough planning calculator only. Real results depend on sales ability, niche demand, retention, call quality, software reliability, pricing, support workload, and client churn."}}]}</script>
+</head>
+<body class="theme-equipment">
+<header class="site-header"><nav class="nav"><a class="brand" href="../"><span class="brand-mark">SC</span><span>Startup Calculators</span></a><div class="nav-links"><a href="#calculator">Calculator</a><a href="#faq">FAQ</a></div></nav></header>
+<main>
+  <section class="hero">
+    <div>
+      <p class="eyebrow">AI startup calculator</p>
+      <h1>AI Voice Agent Business Profit Calculator</h1>
+      <p class="lede">Estimate revenue, call costs, software expenses, setup fees, and monthly profit for an AI receptionist or AI voice agent business.</p>
+      <div class="actions"><a class="button" href="#calculator">Estimate AI Agent Profit</a><a class="button secondary" href="../">All Calculators</a></div>
+    </div>
+    <aside class="hero-card"><span class="badge">Voice AI, retainers, minutes</span><p>An AI voice agent offer can look simple from the outside. The real math is client count, monthly retainers, call minutes, platform costs, support time, churn, and whether the agent actually handles calls well enough to keep customers.</p></aside>
+  </section>
+
+  <section class="section" id="calculator">
+    <div class="calculator-grid">
+      <form class="calculator-card" id="aiVoiceForm" aria-label="AI voice agent profit calculator">
+        <div class="field"><label for="clients">Active clients</label><input id="clients" type="number" min="0" step="1" value="5" /></div>
+        <div class="field"><label for="retainer">Monthly retainer per client</label><input id="retainer" type="number" min="0" step="0.01" value="300" /></div>
+        <div class="field"><label for="setupFee">Setup fee per new client</label><input id="setupFee" type="number" min="0" step="0.01" value="500" /></div>
+        <div class="field"><label for="newClients">New clients this month</label><input id="newClients" type="number" min="0" step="1" value="2" /></div>
+        <div class="field"><label for="callsPerClient">Calls per client per month</label><input id="callsPerClient" type="number" min="0" step="1" value="80" /></div>
+        <div class="field"><label for="minutesPerCall">Average minutes per call</label><input id="minutesPerCall" type="number" min="0" step="0.1" value="3" /></div>
+        <div class="field"><label for="costPerMinute">Voice/telephony cost per minute</label><input id="costPerMinute" type="number" min="0" step="0.001" value="0.12" /></div>
+        <div class="field"><label for="platformCost">Voice agent platform cost/month</label><input id="platformCost" type="number" min="0" step="0.01" value="200" /></div>
+        <div class="field"><label for="phoneNumbers">Phone number cost/month</label><input id="phoneNumbers" type="number" min="0" step="0.01" value="25" /></div>
+        <div class="field"><label for="crmSoftware">CRM/automation software/month</label><input id="crmSoftware" type="number" min="0" step="0.01" value="100" /></div>
+        <div class="field"><label for="outreach">Outreach/ads/tools/month</label><input id="outreach" type="number" min="0" step="0.01" value="300" /></div>
+        <div class="field"><label for="supportHours">Support hours per month</label><input id="supportHours" type="number" min="0" step="0.1" value="10" /></div>
+        <div class="field"><label for="hourlyValue">Your support time value/hour</label><input id="hourlyValue" type="number" min="0" step="0.01" value="35" /></div>
+      </form>
+      <aside class="results-card">
+        <p class="eyebrow">Live results</p>
+        <div id="aiVoiceResults"></div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="section content-grid">
+    <article class="content-card">
+      <h2>Default assumptions</h2>
+      <ul class="assumption-list">
+        <li><span>Active clients</span><strong>5</strong></li>
+        <li><span>Monthly retainer</span><strong>$300</strong></li>
+        <li><span>Setup fee</span><strong>$500</strong></li>
+        <li><span>Calls per client</span><strong>80/month</strong></li>
+        <li><span>Average call length</span><strong>3 minutes</strong></li>
+      </ul>
+    </article>
+    <article class="content-card">
+      <h2>What this AI voice agent calculator estimates</h2>
+      <p>This calculator estimates AI voice agent business revenue, call-minute costs, recurring software expenses, setup fee revenue, monthly profit before taxes, profit per client, and the number of clients needed to break even.</p>
+      <ul>
+        <li>Monthly recurring revenue from client retainers</li>
+        <li>One-time setup fee revenue from new clients</li>
+        <li>Call minutes, voice/API costs, and phone number costs</li>
+        <li>Software, CRM, outreach, and support-time costs</li>
+        <li>Estimated net monthly profit before taxes</li>
+      </ul>
+      <h2>AI voice agent business profit example</h2>
+      <p>Five clients at $300 per month creates $1,500 in monthly recurring revenue. The offer can look strong, but call minutes, platform fees, testing, support time, revisions, and outreach costs can chew through the margin if pricing is too low.</p>
+      <h2>How to use the numbers</h2>
+      <p>Start with a conservative client count and call volume. Then adjust the retainer, call minutes, software cost, and your support time. Watch profit per client. If one client creates too much support work, the retainer may need to be higher.</p>
+      <h2>Truth-check</h2>
+      <p>AI voice quality, latency, call routing, accents, emergency handling, missed-call capture, compliance rules, sales ability, client churn, and support workload can change the real numbers quickly.</p>
+      <h2>Compliance note</h2>
+      <p>Check call recording consent rules, industry restrictions, privacy requirements, TCPA-style outreach rules, data handling, and any local or client-specific compliance requirements before selling voice agents.</p>
+    </article>
+  </section>
+
+  <section class="section" id="faq"><h2>FAQ</h2><div class="faq-list"><details><summary>What should I charge for an AI voice agent?</summary><p>Pricing depends on niche value, call volume, complexity, support workload, and the quality of the agent. Many offers combine a setup fee with a monthly retainer, but the market will decide what sticks.</p></details><details><summary>What costs matter most?</summary><p>Call minutes, voice agent platform fees, CRM tools, phone numbers, outreach tools, testing time, client support, and churn are the big moving parts.</p></details><details><summary>Is an AI voice agent business pure profit?</summary><p>No. Software and call costs matter, but support time is often the hidden cost. Setup, testing, prompt changes, client updates, and troubleshooting can turn a cheap retainer into a tiny hamster wheel.</p></details><details><summary>Can I use this for AI receptionist pricing?</summary><p>Yes. Adjust client count, retainer, setup fee, call volume, and cost per minute to model AI receptionist, missed-call capture, appointment intake, or after-hours call handling offers.</p></details></div></section>
+  <section class="section"><h2>Related calculators</h2><div class="related-links"><a href="../first-100k-service-business-calculator/">First $100K Service Business</a><a href="../pricing-estimate-calculators/">Pricing &amp; Profit Calculators</a><a href="../cold-cake-campaign-roi-calculator/">Campaign ROI</a><a href="../equipment-payback-calculator/">Equipment Payback</a></div></section>
+  <section class="section"><div class="disclaimer">These calculators are rough planning tools. They are not legal, tax, financial, or licensing advice. AI software pricing, call costs, privacy rules, recording laws, taxes, and real-world client results may vary.</div></section>
+</main>
+<footer class="site-footer"><div class="footer-inner"><p><strong>Startup Calculators</strong></p><p>Run the numbers before you buy the machine.</p></div></footer>
+<script>
+(function(){
+  const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+  const number = new Intl.NumberFormat('en-US', { maximumFractionDigits: 1 });
+  const form = document.getElementById('aiVoiceForm');
+  const results = document.getElementById('aiVoiceResults');
+  const rows = [
+    ['monthlyRecurringRevenue', 'Monthly recurring revenue', 'money', true],
+    ['setupRevenue', 'Setup fee revenue this month', 'money'],
+    ['totalMonthlyRevenue', 'Total monthly revenue', 'money'],
+    ['monthlyCallMinutes', 'Monthly call minutes', 'number'],
+    ['voiceCosts', 'Voice/telephony costs', 'money'],
+    ['monthlyExpenses', 'Monthly expenses', 'money'],
+    ['netMonthlyProfit', 'Estimated monthly profit', 'money'],
+    ['profitPerClient', 'Estimated profit per active client', 'money'],
+    ['breakEvenClients', 'Clients needed to cover monthly expenses', 'number']
+  ];
+  results.innerHTML = rows.map(([id, label, type, featured]) => `<div class="result-row${featured ? ' featured' : ''}"><span>${label}</span><strong data-result="${id}" data-type="${type}">0</strong></div>`).join('');
+  function val(id){ const n = Number.parseFloat(document.getElementById(id).value); return Number.isFinite(n) && n > 0 ? n : 0; }
+  function fmt(value, type){ return type === 'money' ? money.format(value || 0) : number.format(value || 0); }
+  function calc(){
+    const clients = val('clients');
+    const retainer = val('retainer');
+    const setupFee = val('setupFee');
+    const newClients = val('newClients');
+    const callsPerClient = val('callsPerClient');
+    const minutesPerCall = val('minutesPerCall');
+    const costPerMinute = val('costPerMinute');
+    const platformCost = val('platformCost');
+    const phoneNumbers = val('phoneNumbers');
+    const crmSoftware = val('crmSoftware');
+    const outreach = val('outreach');
+    const supportHours = val('supportHours');
+    const hourlyValue = val('hourlyValue');
+    const monthlyRecurringRevenue = clients * retainer;
+    const setupRevenue = setupFee * newClients;
+    const totalMonthlyRevenue = monthlyRecurringRevenue + setupRevenue;
+    const monthlyCallMinutes = clients * callsPerClient * minutesPerCall;
+    const voiceCosts = monthlyCallMinutes * costPerMinute;
+    const supportCost = supportHours * hourlyValue;
+    const monthlyExpenses = voiceCosts + platformCost + phoneNumbers + crmSoftware + outreach + supportCost;
+    const netMonthlyProfit = totalMonthlyRevenue - monthlyExpenses;
+    const profitPerClient = clients > 0 ? (monthlyRecurringRevenue - monthlyExpenses) / clients : 0;
+    const breakEvenClients = retainer > 0 ? monthlyExpenses / retainer : 0;
+    const data = { monthlyRecurringRevenue, setupRevenue, totalMonthlyRevenue, monthlyCallMinutes, voiceCosts, monthlyExpenses, netMonthlyProfit, profitPerClient, breakEvenClients };
+    Object.entries(data).forEach(([id, value]) => {
+      const node = results.querySelector(`[data-result="${id}"]`);
+      if (node) node.textContent = fmt(value, node.dataset.type);
+    });
+  }
+  form.addEventListener('input', calc);
+  calc();
+})();
+</script>
+</body>
+</html>
