@@ -1,0 +1,110 @@
+name: Add calculator intro sections
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  add-intros:
+    if: ${{ !contains(github.event.head_commit.message, '[skip intro add]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Insert short intro sections
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+
+          intros = {
+            "parking-lot-striping-profit-calculator/index.html": "Use this parking lot striping profit calculator to estimate line revenue, symbol revenue, paint and material cost, travel, on-site hours, profit before overhead, and profit per hour before quoting a striping job.",
+            "equipment-payback-calculator/index.html": "Use this equipment payback calculator to estimate how many jobs, weeks, and monthly profit it may take for a machine or tool purchase to pay for itself.",
+            "junk-removal-pricing-calculator/index.html": "Use this junk removal pricing calculator to estimate dump fees, labor, fuel, helper cost, markup, suggested minimum price, and job profit before quoting a pickup or cleanout.",
+            "pressure-washing-business-profit-calculator/index.html": "Use this pressure washing profit calculator to estimate job price, chemical cost, fuel, labor hours, equipment wear, profit, revenue per hour, and profit per hour.",
+            "stump-grinding-profit-calculator/index.html": "Use this stump grinding profit calculator to estimate job profit, wear allowance, cleanup cost, equipment payment impact, monthly profit, and profit per hour.",
+            "bounce-house-rental-profit-calculator/index.html": "Use this bounce house rental profit calculator to estimate event revenue, cleaning cost, delivery cost, insurance, monthly profit, and equipment payback.",
+            "vending-machine-profit-calculator/index.html": "Use this vending machine profit calculator to estimate daily gross profit, monthly net profit, location fees, restocking costs, and machine payback.",
+            "food-truck-startup-cost-calculator/index.html": "Use this food truck startup cost calculator to estimate truck cost, buildout, permits, initial inventory, insurance, branding, emergency cushion, and total cash needed.",
+            "first-100k-service-business-calculator/index.html": "Use this first $100K service business calculator to estimate jobs needed, leads needed, weeks to goal, close rate, average job value, and rough profit.",
+            "lawn-mowing-pricing-calculator/index.html": "Use this lawn care profit calculator to estimate mowing price, travel, fuel, labor value, equipment wear, markup, profit, and profit per hour before quoting a yard.",
+            "plumbing-business-startup-cost-calculator/index.html": "Use this plumbing business startup cost calculator to estimate tools, vehicle setup, training, licensing path costs, insurance, launch marketing, working capital, and jobs needed to recover startup cost.",
+            "hvac-business-startup-cost-calculator/index.html": "Use this HVAC business startup cost calculator to estimate certification path costs, tools, vehicle setup, insurance, marketing, working capital, and startup recovery math.",
+            "electrical-contractor-startup-cost-calculator/index.html": "Use this electrical contractor startup cost calculator to estimate licensing path costs, tools, meters, vehicle setup, permits, insurance, and launch cash needs.",
+            "pest-control-business-startup-calculator/index.html": "Use this pest control startup calculator to estimate licensing, equipment, chemicals, vehicle setup, insurance, launch marketing, working capital, and startup payback.",
+            "towing-business-startup-calculator/index.html": "Use this towing business startup calculator to estimate tow truck cost, permits, insurance, gear, dispatch setup, working capital, and startup recovery math.",
+            "golf-hole-in-one-challenge-profit-calculator/index.html": "Use this golf hole-in-one challenge profit calculator to estimate entry revenue, sponsor revenue, prize cost, event expenses, and profit for a paid golf challenge.",
+            "mobile-sauna-business-calculator/index.html": "Use this mobile sauna business calculator to estimate rental revenue, delivery cost, fuel or wood, maintenance, insurance, monthly profit, and payback.",
+            "photo-booth-rental-profit-calculator/index.html": "Use this photo booth rental profit calculator to estimate booking revenue, props, labor, software, delivery, maintenance, monthly profit, and equipment payback.",
+            "christmas-light-installation-profit-calculator/index.html": "Use this Christmas light installation profit calculator to estimate seasonal revenue, materials, labor, removals, storage, marketing, and seasonal profit.",
+            "mobile-knife-sharpening-profit-calculator/index.html": "Use this mobile knife sharpening profit calculator to estimate tickets, customers, consumables, fuel, route cost, equipment payback, and monthly profit.",
+            "epoxy-garage-floor-business-profit-calculator/index.html": "Use this epoxy garage floor profit calculator to estimate square-foot revenue, coating materials, labor, prep, overhead, monthly profit, and equipment payback.",
+            "backyard-movie-theater-rental-profit-calculator/index.html": "Use this backyard movie theater rental profit calculator to estimate outdoor movie packages, indoor theater upgrades, add-ons, event costs, equipment investment, and payback.",
+            "cold-cake-campaign-roi-calculator/index.html": "Use this corporate cake outreach ROI calculator to estimate campaign cost, booked meetings, cost per meeting, acquired customers, revenue, profit, and ROI.",
+            "garage-organization-business-profit-calculator/index.html": "Use this garage organization profit calculator to estimate project revenue, storage materials, labor, marketing cost, monthly profit, break-even projects, and payback.",
+            "mobile-car-detailing-profit-calculator/index.html": "Use this mobile car detailing profit calculator to estimate ticket size, cars per day, workdays, supplies, fuel, insurance, monthly profit, and equipment payback.",
+            "window-tinting-business-profit-calculator/index.html": "Use this window tinting profit calculator to estimate vehicle tint revenue, film cost, labor, overhead, ad spend, profit per vehicle, and equipment payback.",
+            "gutter-cleaning-route-profit-calculator/index.html": "Use this gutter cleaning route profit calculator to estimate job price, jobs per day, fuel, labor, supplies, monthly profit, safety costs, and equipment payback.",
+            "fence-staining-business-profit-calculator/index.html": "Use this fence staining profit calculator to estimate square-foot pricing, stain cost, labor, monthly profit, profit per hour, and equipment payback.",
+            "appliance-repair-business-profit-calculator/index.html": "Use this appliance repair profit calculator to estimate service calls, repair revenue, parts markup, labor, monthly expenses, profit, and payback.",
+            "mobile-dog-grooming-profit-calculator/index.html": "Use this mobile dog grooming profit calculator to estimate grooming tickets, customers, supplies, fuel, route cost, monthly profit, and equipment payback.",
+            "radio-controlled-construction-experience-profit-calculator/index.html": "Use this radio controlled construction experience profit calculator to estimate paid sessions, parties, events, equipment cost, booth fees, labor, and startup payback.",
+            "mobile-sauna-cold-plunge-rental-profit-calculator/index.html": "Use this mobile sauna and cold plunge rental profit calculator to estimate private rentals, weekend bookings, corporate events, cold plunge add-ons, monthly profit, and payback.",
+            "parking-lot-pizza-oven-business-profit-calculator/index.html": "Use this parking lot pizza oven profit calculator to estimate pizza sales, food cost, location fees, labor, permits, fuel, monthly profit, and payback.",
+            "b2b-stump-grinding-business-profit-calculator/index.html": "Use this B2B stump grinding profit calculator to estimate partner referrals, grinder rental or loan costs, fuel, blades, referral fees, monthly profit, and profit per job.",
+            "seasonal-porch-decorating-business-profit-calculator/index.html": "Use this seasonal porch decorating profit calculator to estimate package revenue, materials, install labor, removals, storage, repeat customers, and seasonal profit.",
+            "washer-dryer-rental-business-profit-calculator/index.html": "Use this washer and dryer rental calculator to estimate recurring rental revenue, repair reserves, delivery, churn, monthly expenses, monthly profit, and startup payback.",
+            "commercial-hvac-coil-cleaning-profit-calculator/index.html": "Use this commercial HVAC coil cleaning calculator to estimate job revenue, recurring contracts, labor, chemicals, travel, overhead, monthly profit, and equipment payback.",
+            "mailbox-installation-repair-business-profit-calculator/index.html": "Use this mailbox installation and repair calculator to estimate repair jobs, new installs, HOA projects, materials, flyers, fuel, insurance, and monthly profit.",
+            "drone-roof-documentation-business-profit-calculator/index.html": "Use this drone roof documentation calculator to estimate report fees, residential jobs, commercial jobs, software, travel, ads, monthly profit, and payback.",
+            "grill-cleaning-business-profit-calculator/index.html": "Use this grill cleaning business profit calculator to estimate cleaning tickets, supplies, labor, fuel, route cost, monthly profit, and equipment payback.",
+            "screen-printing-t-shirt-business-profit-calculator/index.html": "Use this screen printing T-shirt profit calculator to estimate order revenue, blank shirt costs, supplies, labor, monthly orders, overhead, and equipment payback.",
+            "house-painting-business-profit-calculator/index.html": "Use this house painting profit calculator to estimate project revenue, paint and material cost, labor, travel, monthly jobs, overhead, profit, and margin.",
+            "window-washing-business-profit-calculator/index.html": "Use this window washing profit calculator to estimate route revenue, windows per job, workdays, supplies, fuel, labor, startup cost, and payback.",
+            "deck-building-business-profit-calculator/index.html": "Use this deck building profit calculator to estimate square-foot revenue, material costs, crew costs, permits, overhead, project volume, and payback.",
+            "fence-building-business-profit-calculator/index.html": "Use this fence building profit calculator to estimate linear-foot revenue, material cost, gate add-ons, labor, overhead, monthly profit, and equipment payback.",
+            "epoxy-countertop-business-profit-calculator/index.html": "Use this epoxy countertop profit calculator to estimate square-foot revenue, resin and material cost, labor, waste reserve, overhead, monthly profit, and payback.",
+            "mobile-notary-business-profit-calculator/index.html": "Use this mobile notary profit calculator to estimate appointment fees, travel fees, fuel, printing, supplies, platform fees, overhead, and monthly profit.",
+            "pet-waste-removal-business-profit-calculator/index.html": "Use this pet waste removal profit calculator to estimate recurring customers, visit price, route volume, supplies, disposal, fuel, labor, and monthly profit.",
+            "christmas-window-painting-profit-calculator/index.html": "Use this Christmas window painting calculator to estimate seasonal storefront jobs, paint supplies, travel, labor, marketing, profit per hour, and total seasonal profit.",
+            "mobile-welding-business-profit-calculator/index.html": "Use this mobile welding profit calculator to estimate service call revenue, billable hours, consumables, fuel, overhead, equipment cost, and payback."
+          }
+
+          marker = '<section class="section content-grid">'
+          changed = []
+          for rel, text in intros.items():
+            path = Path(rel)
+            if not path.exists():
+              continue
+            html = path.read_text(encoding="utf-8")
+            if 'data-calculator-intro="true"' in html:
+              continue
+            if marker not in html:
+              continue
+            h2 = "Before you use this calculator"
+            intro = f'<section class="section" data-calculator-intro="true"><div class="content-card simple-content"><h2>{h2}</h2><p>{text}</p><p>Change the defaults to match your market, pricing, schedule, and real costs. The result is a planning estimate, not a guarantee.</p></div></section>'
+            html = html.replace(marker, intro + marker, 1)
+            path.write_text(html, encoding="utf-8")
+            changed.append(rel)
+
+          print(f"Updated {len(changed)} files")
+          for item in changed:
+            print(item)
+          PY
+
+      - name: Commit changes if needed
+        run: |
+          if git diff --quiet; then
+            echo "No calculator intro changes needed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Add short calculator intro sections [skip intro add]"
+          git push
