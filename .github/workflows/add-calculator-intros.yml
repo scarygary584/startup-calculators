@@ -108,3 +108,5 @@ jobs:
           git add .
           git commit -m "Add short calculator intro sections [skip intro add]"
           git push
+
+# Triggered by ChatGPT to run the intro insertion workflow.
