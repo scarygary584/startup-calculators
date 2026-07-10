@@ -1,0 +1,74 @@
+name: Add last reviewed notes
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  add-last-reviewed:
+    if: ${{ !contains(github.event.head_commit.message, '[skip reviewed add]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Insert last reviewed notes
+        run: |
+          python3 <<'PY'
+          from pathlib import Path
+
+          calculator_dirs = [p for p in Path('.').iterdir() if p.is_dir() and (p / 'index.html').exists()]
+          skip_dirs = {
+            '.git', '.github',
+            'business-calculator-guides',
+            'how-to-use-startup-cost-calculators',
+            'pricing-calculator-vs-profit-calculator',
+            'startup-cost-calculators',
+            'pricing-estimate-calculators',
+            'local-service-business-calculators',
+            'rental-business-calculators',
+            'skilled-trades-business-calculators',
+            'ai-business-calculators',
+            'weird-business-calculators'
+          }
+
+          note = '<section class="section" data-last-reviewed="true"><div class="disclaimer"><strong>Last reviewed:</strong> July 2026. Calculator defaults are rough planning numbers and may need adjustment for local pricing, labor, materials, insurance, taxes, permits, seasonality, and demand.</div></section>'
+          disclaimer_marker = '<section class="section"><div class="disclaimer">These calculators are rough planning tools.'
+          changed = []
+
+          for directory in calculator_dirs:
+            if directory.name in skip_dirs:
+              continue
+            path = directory / 'index.html'
+            html = path.read_text(encoding='utf-8')
+            if 'data-last-reviewed="true"' in html or 'Last reviewed: July 2026' in html:
+              continue
+            if 'data-calculator=' not in html:
+              continue
+            if disclaimer_marker not in html:
+              continue
+            html = html.replace(disclaimer_marker, note + disclaimer_marker, 1)
+            path.write_text(html, encoding='utf-8')
+            changed.append(str(path))
+
+          print(f'Updated {len(changed)} files')
+          for item in changed:
+            print(item)
+          PY
+
+      - name: Commit changes if needed
+        run: |
+          if git diff --quiet; then
+            echo "No last reviewed notes needed."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "Add last reviewed notes to calculator pages [skip reviewed add]"
+          git push
