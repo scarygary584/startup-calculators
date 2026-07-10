@@ -11,7 +11,7 @@
   padding: 18px;
   border-radius: 28px;
   border: 1px solid #aeb7c4;
-  background: linear-gradient(160deg, #f4f6f8 0%, #d8dee6 42%, #c3ccd7 100%);
+  background: radial-gradient(circle at 22px 22px, rgba(255,255,255,0.92) 0 2px, transparent 3px), radial-gradient(circle at calc(100% - 22px) 22px, rgba(255,255,255,0.75) 0 2px, transparent 3px), radial-gradient(circle at 22px calc(100% - 22px), rgba(91,105,123,0.28) 0 2px, transparent 3px), radial-gradient(circle at calc(100% - 22px) calc(100% - 22px), rgba(91,105,123,0.28) 0 2px, transparent 3px), linear-gradient(160deg, #f4f6f8 0%, #d8dee6 42%, #c3ccd7 100%);
   box-shadow: 0 42px 88px rgba(15, 23, 42, 0.32), 0 14px 28px rgba(15, 23, 42, 0.18), inset 0 2px 0 rgba(255, 255, 255, 0.7), inset 0 -2px 0 rgba(105, 117, 134, 0.2);
   color: #172033;
 }
@@ -25,12 +25,27 @@
   pointer-events: none;
 }
 
+.calculator-shell::after {
+  content: "MEMORY  TAX  RATE  COST  SELL  MARGIN";
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: 82px;
+  color: rgba(30, 41, 59, 0.52);
+  font-size: 0.58rem;
+  font-weight: 900;
+  letter-spacing: 0.13em;
+  text-align: center;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
 .calculator-shell-top {
   display: flex;
   align-items: start;
   justify-content: space-between;
   gap: 14px;
-  margin-bottom: 16px;
+  margin-bottom: 28px;
 }
 
 .calculator-shell-name {
@@ -39,6 +54,15 @@
   font-weight: 900;
   letter-spacing: 0.03em;
   text-transform: uppercase;
+}
+
+.calculator-shell-name::after {
+  content: "  •  PROFIT / COST / MARGIN";
+  color: #64748b;
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  vertical-align: middle;
 }
 
 .calculator-shell-model {
@@ -50,32 +74,73 @@
   text-transform: uppercase;
 }
 
+.calculator-shell-model::after {
+  content: "  12 DIGIT • AUTO PROFIT";
+  color: #64748b;
+  font-size: 0.66rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
 .calculator-shell-solar {
+  position: relative;
   width: 110px;
   height: 30px;
   border-radius: 8px;
   border: 1px solid rgba(255, 255, 255, 0.16);
-  background: linear-gradient(135deg, #0f172a, #1e293b 50%, #334155);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  background: linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px) 0 0 / 18px 100%, linear-gradient(135deg, #0f172a, #1e293b 50%, #334155);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08), inset 0 -8px 18px rgba(0, 0, 0, 0.26);
+}
+
+.calculator-shell-solar::after {
+  content: "SOLAR";
+  position: absolute;
+  right: 7px;
+  top: 6px;
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 0.52rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
 }
 
 .calculator-shell-display {
+  position: relative;
+  overflow: hidden;
   margin-bottom: 16px;
   padding: 16px 18px 14px;
   border: 10px solid #1e293b;
   border-radius: 16px;
-  background: linear-gradient(180deg, #d7e1d1 0%, #c7d3c2 100%);
-  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.14), inset 0 2px 4px rgba(15, 23, 42, 0.2);
+  background: repeating-linear-gradient(0deg, rgba(17, 24, 39, 0.035) 0 1px, transparent 1px 4px), linear-gradient(180deg, #d7e1d1 0%, #c7d3c2 100%);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.14), inset 0 2px 4px rgba(15, 23, 42, 0.2), inset 0 -12px 22px rgba(15, 23, 42, 0.05);
+}
+
+.calculator-shell-display::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, rgba(255,255,255,0.24), transparent 32%, transparent 68%, rgba(255,255,255,0.1));
+  pointer-events: none;
 }
 
 .display-caption {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
   margin-bottom: 6px;
   color: #334155;
   font-size: 0.76rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
+}
+
+.display-caption::after {
+  content: "M+  M-  GT";
+  color: rgba(51, 65, 85, 0.54);
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.11em;
 }
 
 .display-value {
@@ -85,6 +150,7 @@
   font-size: clamp(2rem, 7vw, 3.15rem);
   line-height: 1;
   letter-spacing: -0.06em;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.28), 1px 0 0 rgba(17, 24, 39, 0.12);
 }
 
 .display-meta {
@@ -118,12 +184,30 @@
 }
 
 .calc-key-field {
+  position: relative;
   padding: 12px;
   border-radius: 18px;
   border: 1px solid #aeb7c4;
   background: linear-gradient(180deg, #fdfefe 0%, #edf2f6 100%);
   box-shadow: 0 14px 26px rgba(15, 23, 42, 0.14), 0 6px 12px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -2px 0 rgba(148, 163, 184, 0.16);
 }
+
+.calc-key-field::after {
+  position: absolute;
+  right: 10px;
+  top: 8px;
+  color: rgba(51, 65, 85, 0.42);
+  font-size: 0.54rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.calc-key-field:nth-child(1)::after { content: "COST"; }
+.calc-key-field:nth-child(2)::after { content: "FIXED"; }
+.calc-key-field:nth-child(3)::after { content: "SELL"; }
+.calc-key-field:nth-child(4)::after { content: "QTY"; }
+.calc-key-field:nth-child(5)::after { content: "MARGIN"; }
 
 .calc-key-field.wide {
   grid-column: 1 / -1;
@@ -144,7 +228,7 @@
   border: 1px solid #bfc9d4;
   border-radius: 14px;
   background: linear-gradient(180deg, #ffffff, #f7fafc);
-  box-shadow: inset 0 2px 4px rgba(15, 23, 42, 0.06);
+  box-shadow: inset 0 2px 4px rgba(15, 23, 42, 0.06), inset 0 -8px 16px rgba(148, 163, 184, 0.1);
   color: #0f172a;
   font-size: 1.15rem;
   font-weight: 800;
@@ -166,7 +250,10 @@
 }
 
 .mini-readout span {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
   margin-bottom: 6px;
   color: rgba(255, 255, 255, 0.78);
   font-size: 0.74rem;
@@ -174,6 +261,9 @@
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
+
+.mini-readout:first-child span::after { content: "BE"; color: rgba(255,255,255,0.42); }
+.mini-readout:last-child span::after { content: "PAY"; color: rgba(255,255,255,0.42); }
 
 .mini-readout strong {
   display: block;
@@ -190,6 +280,13 @@
   font-weight: 700;
 }
 
+.calculator-shell-note::before {
+  content: "AUTO RECALC • ";
+  color: #334155;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+}
+
 @media (max-width: 719px) {
   .calculator-shell {
     padding: 16px;
@@ -197,8 +294,20 @@
     box-shadow: 0 28px 56px rgba(15, 23, 42, 0.28), 0 10px 22px rgba(15, 23, 42, 0.16), inset 0 2px 0 rgba(255, 255, 255, 0.7), inset 0 -2px 0 rgba(105, 117, 134, 0.2);
   }
 
+  .calculator-shell::after {
+    top: 72px;
+    font-size: 0.5rem;
+    letter-spacing: 0.08em;
+  }
+
   .calculator-shell-top {
     align-items: center;
+    margin-bottom: 26px;
+  }
+
+  .calculator-shell-name::after,
+  .calculator-shell-model::after {
+    display: none;
   }
 
   .calculator-shell-solar {
