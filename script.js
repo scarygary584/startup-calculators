@@ -853,9 +853,9 @@ radioConstruction: {
       ["sessionRevenue", "Monthly session revenue", "money"],
       ["partyRevenue", "Monthly private party revenue", "money"],
       ["corporateRevenue", "Monthly corporate event revenue", "money"],
-      ["monthlyRevenue", "Total monthly revenue", "money", true],
+      ["monthlyRevenue", "Total monthly revenue", "money"],
       ["monthlyExpenses", "Monthly expenses", "money"],
-      ["monthlyProfit", "Estimated monthly profit", "money"],
+      ["monthlyProfit", "Estimated monthly profit", "money", true],
       ["annualProfit", "Annualized profit estimate", "money"],
       ["startupPaybackMonths", "Startup payback estimate in months", "number"]
     ],
