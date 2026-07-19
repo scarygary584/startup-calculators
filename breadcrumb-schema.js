@@ -6,7 +6,7 @@
   const canonical = document.querySelector('link[rel="canonical"]');
   const pageName = h1 && h1.textContent ? h1.textContent.trim() : document.title.replace(/\s*\|\s*.*/, "").trim();
   const pageUrl = canonical && canonical.href ? canonical.href : window.location.href;
-  const homeUrl = "https://startupprofitcalculators.com/";
+  const homeUrl = "https://www.startupprofitcalculators.com/";
 
   const schema = {
     "@context": "https://schema.org",
