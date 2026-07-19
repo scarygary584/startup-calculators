@@ -27,7 +27,7 @@
     "publisher": {
       "@type": "Organization",
       "name": "Startup Profit Calculators",
-      "url": "https://startupprofitcalculators.com/"
+      "url": "https://www.startupprofitcalculators.com/"
     },
     "offers": {
       "@type": "Offer",
