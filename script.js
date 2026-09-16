@@ -56,11 +56,13 @@ const calculators = {
       ["monthlyNetProfit", "Monthly profit after extra costs", "money"]
     ],
     calculate: (v) => {
-      const jobsNeeded = divide(v.equipmentCost, v.profitPerJob);
-      const monthlyGrossProfit = v.profitPerJob * v.jobsPerWeek * 4.33;
+      const monthlyGrossProfit = v.profitPerJob * v.jobsPerWeek * (52 / 12);
+      const monthlyNetProfit = monthlyGrossProfit - v.extraMonthlyCosts;
+      const weeksNeeded = v.equipmentCost === 0 ? 0 : divide(v.equipmentCost, monthlyNetProfit) * (52 / 12);
+      const jobsNeeded = weeksNeeded * v.jobsPerWeek;
       return {
         jobsNeeded,
-        weeksNeeded: divide(jobsNeeded, v.jobsPerWeek),
+        weeksNeeded,
         monthlyGrossProfit,
         monthlyNetProfit: monthlyGrossProfit - v.extraMonthlyCosts
       };
@@ -157,7 +159,7 @@ const calculators = {
     ],
     results: [
       ["monthlyRevenue", "Monthly revenue", "money"],
-      ["variableCosts", "Monthly variable costs", "money"],
+      ["variableCosts", "Monthly costs including insurance", "money"],
       ["profitBeforePayback", "Monthly profit before equipment payback", "money", true],
       ["eventsToPayOff", "Events to pay off equipment", "number"],
       ["monthsToPayOff", "Months to pay off equipment", "number"]
@@ -171,7 +173,7 @@ const calculators = {
         monthlyRevenue,
         variableCosts,
         profitBeforePayback,
-        eventsToPayOff: divide(v.equipmentCost, profitPerEvent),
+        eventsToPayOff: divide(v.equipmentCost, divide(profitBeforePayback, v.eventsPerMonth)),
         monthsToPayOff: divide(v.equipmentCost, profitBeforePayback)
       };
     }
@@ -218,7 +220,7 @@ const calculators = {
       ["startupCost", "Total startup cost", "money", true],
       ["cushion", "Emergency cushion", "money"],
       ["cashNeeded", "Total cash needed", "money"],
-      ["monthlySalesNeeded", "Monthly sales needed to recover startup over 12 months", "money"]
+      ["monthlySalesNeeded", "Monthly profit needed for 12-month startup recovery", "money"]
     ],
     calculate: (v) => {
       const startupCost = v.truckCost + v.buildout + v.permits + v.inventory + v.insurance + v.branding;
@@ -288,18 +290,19 @@ const calculators = {
       ["vehicle", "Work vehicle setup", 18000, "money"],
       ["insurance", "Insurance and bonding", 3500, "money"],
       ["marketing", "Launch marketing", 2500, "money"],
-      ["workingCapital", "Working capital cushion", 10000, "money"]
+      ["workingCapital", "Working capital cushion", 10000, "money"],
+      ["recoveryProfit", "Profit per job available for startup recovery", 450, "money"]
     ],
     results: [
       ["startupTotal", "Estimated startup total", "money", true],
       ["cashBeforeCushion", "Estimated cash before cushion", "money"],
       ["cushion", "Planning cushion", "money"],
-      ["jobsToRecover", "Jobs to recover startup at $450 profit/job", "number"]
+      ["jobsToRecover", "Jobs to recover startup at entered profit", "number"]
     ],
     calculate: (v) => {
       const cashBeforeCushion = v.trainingLicensing + v.tools + v.vehicle + v.insurance + v.marketing;
       const startupTotal = cashBeforeCushion + v.workingCapital;
-      return { startupTotal, cashBeforeCushion, cushion: v.workingCapital, jobsToRecover: divide(startupTotal, 450) };
+      return { startupTotal, cashBeforeCushion, cushion: v.workingCapital, jobsToRecover: Math.ceil(divide(startupTotal, v.recoveryProfit)) };
     }
   },
   hvacStartup: {
@@ -309,18 +312,19 @@ const calculators = {
       ["vehicle", "Service vehicle setup", 22000, "money"],
       ["insurance", "Insurance and bonding", 4500, "money"],
       ["marketing", "Launch marketing", 3000, "money"],
-      ["workingCapital", "Working capital cushion", 12000, "money"]
+      ["workingCapital", "Working capital cushion", 12000, "money"],
+      ["recoveryProfit", "Profit per job available for startup recovery", 600, "money"]
     ],
     results: [
       ["startupTotal", "Estimated startup total", "money", true],
       ["regulatedPathCost", "Licensing, insurance, and setup costs", "money"],
       ["cushion", "Planning cushion", "money"],
-      ["jobsToRecover", "Jobs to recover startup at $600 profit/job", "number"]
+      ["jobsToRecover", "Jobs to recover startup at entered profit", "number"]
     ],
     calculate: (v) => {
       const regulatedPathCost = v.certifications + v.insurance + v.marketing;
       const startupTotal = v.certifications + v.tools + v.vehicle + v.insurance + v.marketing + v.workingCapital;
-      return { startupTotal, regulatedPathCost, cushion: v.workingCapital, jobsToRecover: divide(startupTotal, 600) };
+      return { startupTotal, regulatedPathCost, cushion: v.workingCapital, jobsToRecover: Math.ceil(divide(startupTotal, v.recoveryProfit)) };
     }
   },
   electricalStartup: {
@@ -330,18 +334,19 @@ const calculators = {
       ["vehicle", "Vehicle setup", 16000, "money"],
       ["insurance", "Insurance and bonding", 4000, "money"],
       ["permitsAdmin", "Permits/admin setup", 2000, "money"],
-      ["workingCapital", "Working capital cushion", 9000, "money"]
+      ["workingCapital", "Working capital cushion", 9000, "money"],
+      ["recoveryProfit", "Profit per job available for startup recovery", 500, "money"]
     ],
     results: [
       ["startupTotal", "Estimated startup total", "money", true],
       ["complianceSetup", "License, permit, and insurance setup", "money"],
       ["cushion", "Planning cushion", "money"],
-      ["jobsToRecover", "Jobs to recover startup at $500 profit/job", "number"]
+      ["jobsToRecover", "Jobs to recover startup at entered profit", "number"]
     ],
     calculate: (v) => {
       const complianceSetup = v.licensePath + v.insurance + v.permitsAdmin;
       const startupTotal = v.licensePath + v.tools + v.vehicle + v.insurance + v.permitsAdmin + v.workingCapital;
-      return { startupTotal, complianceSetup, cushion: v.workingCapital, jobsToRecover: divide(startupTotal, 500) };
+      return { startupTotal, complianceSetup, cushion: v.workingCapital, jobsToRecover: Math.ceil(divide(startupTotal, v.recoveryProfit)) };
     }
   },
   pestStartup: {
@@ -351,18 +356,19 @@ const calculators = {
       ["initialChemicals", "Initial chemical inventory", 2500, "money"],
       ["vehicle", "Vehicle setup", 12000, "money"],
       ["insurance", "Insurance", 3000, "money"],
-      ["marketing", "Launch marketing", 2500, "money"]
+      ["marketing", "Launch marketing", 2500, "money"],
+      ["customerProfit", "Monthly profit per customer after operating costs", 25, "money"]
     ],
     results: [
       ["startupTotal", "Estimated startup total", "money", true],
       ["regulatedCosts", "Training, chemical, and insurance costs", "money"],
-      ["monthlyRevenueNeeded", "Monthly revenue to recover over 12 months", "money"],
-      ["customersNeeded", "Customers at $65/month to cover recovery target", "number"]
+      ["monthlyRevenueNeeded", "Monthly profit needed for 12-month recovery", "money"],
+      ["customersNeeded", "Customers needed at entered monthly profit", "number"]
     ],
     calculate: (v) => {
       const startupTotal = v.licensing + v.equipment + v.initialChemicals + v.vehicle + v.insurance + v.marketing;
       const monthlyRevenueNeeded = divide(startupTotal, 12);
-      return { startupTotal, regulatedCosts: v.licensing + v.initialChemicals + v.insurance, monthlyRevenueNeeded, customersNeeded: divide(monthlyRevenueNeeded, 65) };
+      return { startupTotal, regulatedCosts: v.licensing + v.initialChemicals + v.insurance, monthlyRevenueNeeded, customersNeeded: Math.ceil(divide(monthlyRevenueNeeded, v.customerProfit)) };
     }
   },
   towingStartup: {
@@ -372,17 +378,18 @@ const calculators = {
       ["insurance", "Commercial insurance", 12000, "money"],
       ["permits", "Permits and compliance", 3500, "money"],
       ["dispatch", "Dispatch/software setup", 1500, "money"],
-      ["workingCapital", "Working capital cushion", 15000, "money"]
+      ["workingCapital", "Working capital cushion", 15000, "money"],
+      ["recoveryProfit", "Profit per call available for startup recovery", 125, "money"]
     ],
     results: [
       ["startupTotal", "Estimated startup total", "money", true],
       ["complianceAndInsurance", "Compliance and insurance costs", "money"],
       ["cushion", "Planning cushion", "money"],
-      ["callsToRecover", "Calls to recover startup at $125 profit/call", "number"]
+      ["callsToRecover", "Calls to recover startup at entered profit", "number"]
     ],
     calculate: (v) => {
       const startupTotal = v.truck + v.equipment + v.insurance + v.permits + v.dispatch + v.workingCapital;
-      return { startupTotal, complianceAndInsurance: v.insurance + v.permits, cushion: v.workingCapital, callsToRecover: divide(startupTotal, 125) };
+      return { startupTotal, complianceAndInsurance: v.insurance + v.permits, cushion: v.workingCapital, callsToRecover: Math.ceil(divide(startupTotal, v.recoveryProfit)) };
     }
   },
   golfChallenge: {
@@ -401,6 +408,7 @@ const calculators = {
       ["miscCosts", "Misc monthly costs", 500, "money"]
     ],
     results: [
+      ["monthlyBalls", "Balls hit per month", "number"],
       ["firstBucketRevenue", "First bucket revenue", "money"],
       ["repeatBucketRevenue", "Repeat bucket revenue", "money"],
       ["monthlyBucketRevenue", "Total monthly bucket revenue", "money"],
@@ -420,6 +428,7 @@ const calculators = {
       const operatingCosts = prizePayoutCost + v.locationCost + v.signageCost + v.staffCost + v.insurancePermits + v.miscCosts;
       const revenuePerFirstTimePlayer = v.bucketPrice * (1 + (v.repeatBucketRate / 100));
       return {
+        monthlyBalls: (monthlyFirstBuckets + monthlyRepeatBuckets) * v.ballsPerBucket,
         firstBucketRevenue,
         repeatBucketRevenue,
         monthlyBucketRevenue,
@@ -780,7 +789,7 @@ const calculators = {
       ["serviceCalls", "Service calls per month", 55],
       ["diagnosticFee", "Diagnostic fee", 95, "money"],
       ["repairCloseRate", "Repair close rate percent", 65, "percent"],
-      ["repairLaborProfit", "Average repair labor profit", 140, "money"],
+      ["repairLaborProfit", "Additional labor contribution per accepted repair", 140, "money"],
       ["partsMarkupProfit", "Average parts markup profit", 45, "money"],
       ["fuelPerCall", "Fuel/travel per call", 12, "money"],
       ["softwareInsurance", "Monthly software/insurance", 450, "money"],
@@ -789,8 +798,8 @@ const calculators = {
     results: [
       ["diagnosticRevenue", "Diagnostic revenue", "money"],
       ["closedRepairs", "Estimated closed repairs", "number"],
-      ["repairRevenue", "Estimated repair revenue", "money"],
-      ["monthlyRevenue", "Monthly revenue", "money"],
+      ["repairRevenue", "Additional repair contribution", "money"],
+      ["monthlyRevenue", "Diagnostic fees plus repair contribution", "money"],
       ["monthlyCosts", "Monthly costs", "money"],
       ["monthlyProfit", "Estimated monthly profit before taxes", "money", true],
       ["monthsToPayOff", "Months to pay off tools", "number"]
@@ -812,16 +821,16 @@ const calculators = {
       ["workdaysPerMonth", "Workdays per month", 18],
       ["suppliesPerDog", "Supplies per dog", 9, "money"],
       ["fuelPerDay", "Fuel per day", 30, "money"],
-      ["vanPayment", "Monthly van payment", 1200, "money"],
+      ["vanPayment", "Monthly van payment (0 for a cash purchase)", 0, "money"],
       ["insuranceSoftware", "Monthly insurance/software", 350, "money"],
-      ["equipmentCost", "Van/equipment cost", 35000, "money"]
+      ["equipmentCost", "Cash invested in van/equipment", 35000, "money"]
     ],
     results: [
       ["monthlyRevenue", "Monthly revenue", "money"],
       ["monthlyCosts", "Monthly costs", "money"],
       ["monthlyProfit", "Estimated monthly profit before taxes", "money", true],
       ["profitPerDog", "Estimated profit per dog", "money"],
-      ["dogsToPayOff", "Dogs to pay off equipment", "number"],
+      ["dogsToPayOff", "Dogs to recover cash invested", "number"],
       ["monthsToPayOff", "Months to pay off equipment", "number"]
     ],
     calculate: (v) => {
@@ -850,6 +859,7 @@ radioConstruction: {
       ["laborPerEventDay", "Labor cost per event day", 150, "money"]
     ],
     results: [
+      ["sessionHours", "Paid session equipment-hours per month", "number"],
       ["sessionRevenue", "Monthly session revenue", "money"],
       ["partyRevenue", "Monthly private party revenue", "money"],
       ["corporateRevenue", "Monthly corporate event revenue", "money"],
@@ -867,7 +877,7 @@ radioConstruction: {
       const monthlyExpenses = v.eventBoothFees + v.monthlyMisc + (v.laborPerEventDay * v.eventDaysPerMonth);
       const monthlyProfit = monthlyRevenue - monthlyExpenses;
       const startupCost = v.startupEquipmentCost + v.trailerSetupCost;
-      return { sessionRevenue, partyRevenue, corporateRevenue, monthlyRevenue, monthlyExpenses, monthlyProfit, annualProfit: monthlyProfit * 12, startupPaybackMonths: divide(startupCost, monthlyProfit) };
+      return { sessionHours: v.sessionsPerEventDay * v.eventDaysPerMonth * v.sessionMinutes / 60, sessionRevenue, partyRevenue, corporateRevenue, monthlyRevenue, monthlyExpenses, monthlyProfit, annualProfit: monthlyProfit * 12, startupPaybackMonths: divide(startupCost, monthlyProfit) };
     }
   },
   saunaColdPlunge: {
@@ -950,7 +960,7 @@ radioConstruction: {
       ["weeksPerMonth", "Weeks per month", 4.33],
       ["rentalCostPerDay", "Grinder rental cost per day", 250, "money"],
       ["rentalDaysPerMonth", "Rental days per month", 8],
-      ["equipmentLoan", "Or equipment loan/month", 800, "money"],
+      ["equipmentLoan", "Equipment loan/month (0 when renting only)", 0, "money"],
       ["trailerTruck", "Trailer/truck cost per month", 500, "money"],
       ["fuelBladesMaintenance", "Fuel/blades/maintenance per job", 35, "money"],
       ["referralFee", "Referral fee per job", 50, "money"],
@@ -960,7 +970,7 @@ radioConstruction: {
     results: [
       ["monthlyRevenue", "Monthly B2B revenue", "money"],
       ["jobCosts", "Monthly job costs", "money"],
-      ["equipmentCosts", "Monthly rental or loan costs", "money"],
+      ["equipmentCosts", "Monthly rental, loan and truck costs", "money"],
       ["monthlyExpenses", "Monthly expenses", "money"],
       ["monthlyProfit", "Estimated monthly profit", "money", true],
       ["annualProfit", "Annualized profit estimate", "money"],
@@ -1024,8 +1034,9 @@ radioConstruction: {
       ["repairReserve", "Monthly repair reserve", "money"],
       ["newSetInvestment", "Monthly new set investment", "money"],
       ["monthlyExpenses", "Monthly expenses", "money"],
-      ["monthlyProfit", "Estimated monthly profit", "money", true],
-      ["annualProfit", "Annualized profit estimate", "money"],
+      ["monthlyProfit", "Operating profit before owner pay and tax", "money", true],
+      ["annualProfit", "Annualized operating profit estimate", "money"],
+      ["cashAfterGrowth", "Monthly cash after new set purchases", "money"],
       ["churnedSets", "Estimated sets churned per month", "number"],
       ["startupPaybackMonths", "Startup payback estimate in months", "number"]
     ],
@@ -1033,10 +1044,10 @@ radioConstruction: {
       const monthlyRevenue = v.monthlyRentalPerSet * v.rentedSets;
       const repairReserve = v.repairReservePerSet * v.rentedSets;
       const newSetInvestment = (v.acquisitionCostPerSet + v.deliveryInstallPerSet) * v.newSetsPerMonth;
-      const monthlyExpenses = repairReserve + v.storage + v.truckFuel + v.paymentProcessing + newSetInvestment;
+      const monthlyExpenses = repairReserve + v.storage + v.truckFuel + v.paymentProcessing;
       const monthlyProfit = monthlyRevenue - monthlyExpenses;
       const startupCost = (v.acquisitionCostPerSet + v.deliveryInstallPerSet) * v.rentedSets;
-      return { monthlyRevenue, repairReserve, newSetInvestment, monthlyExpenses, monthlyProfit, annualProfit: monthlyProfit * 12, churnedSets: v.rentedSets * (v.churnPercent / 100), startupPaybackMonths: divide(startupCost, monthlyProfit) };
+      return { cashAfterGrowth: monthlyProfit - newSetInvestment, monthlyRevenue, repairReserve, newSetInvestment, monthlyExpenses, monthlyProfit, annualProfit: monthlyProfit * 12, churnedSets: v.rentedSets * (v.churnPercent / 100), startupPaybackMonths: divide(startupCost, monthlyProfit) };
     }
   },
   coilCleaning: {
@@ -1081,6 +1092,7 @@ radioConstruction: {
       ["materialInstall", "Material cost per install", 100, "money"],
       ["hoaProjectValue", "HOA project value", 5000, "money"],
       ["hoaProjectsPerYear", "HOA projects per year", 2],
+      ["hoaCostPerProject", "Materials and paid labor per HOA project", 3000, "money"],
       ["flyers", "Flyers/door hangers/month", 150, "money"],
       ["tools", "Tools/equipment cost", 500, "money"],
       ["fuel", "Fuel/month", 150, "money"],
@@ -1104,7 +1116,8 @@ radioConstruction: {
       const monthlyRevenue = repairRevenue + installRevenue + hoaMonthlyRevenue;
       const materials = (v.materialRepair * v.repairJobsPerMonth) + (v.materialInstall * v.newInstallsPerMonth);
       const callbackCost = monthlyRevenue * (v.callbackReserve / 100);
-      const monthlyExpenses = materials + callbackCost + v.flyers + v.fuel + v.insurance;
+      const hoaMonthlyCost = v.hoaCostPerProject * v.hoaProjectsPerYear / 12;
+      const monthlyExpenses = materials + hoaMonthlyCost + callbackCost + v.flyers + v.fuel + v.insurance;
       const monthlyProfit = monthlyRevenue - monthlyExpenses;
       return { repairRevenue, installRevenue, hoaMonthlyRevenue, monthlyRevenue, monthlyExpenses, monthlyProfit, annualProfit: monthlyProfit * 12, startupPaybackMonths: divide(v.tools, monthlyProfit) };
     }
@@ -1121,11 +1134,13 @@ radioConstruction: {
       ["software", "Software/reporting/month", 100, "money"],
       ["travelPerJob", "Travel/fuel per job", 20, "money"],
       ["editingHours", "Editing/report time per job hours", 1],
+      ["editingRate", "Editing labor allowance per hour", 30, "money"],
       ["referralFeePercent", "Referral fee percentage", 20, "percent"],
       ["googleAds", "Google Ads/month", 400, "money"],
       ["leadCloseRate", "Lead close rate percentage", 40, "percent"]
     ],
     results: [
+      ["leadsNeeded", "Leads needed at entered close rate", "number"],
       ["residentialRevenue", "Residential documentation revenue", "money"],
       ["commercialRevenue", "Commercial documentation revenue", "money"],
       ["monthlyRevenue", "Total monthly revenue", "money"],
@@ -1141,9 +1156,9 @@ radioConstruction: {
       const commercialRevenue = v.commercialFee * v.commercialJobs;
       const monthlyRevenue = residentialRevenue + commercialRevenue;
       const referralFees = monthlyRevenue * (v.referralFeePercent / 100);
-      const monthlyExpenses = referralFees + v.insurance + v.software + v.googleAds + (v.travelPerJob * totalJobs);
+      const monthlyExpenses = referralFees + v.insurance + v.software + v.googleAds + ((v.travelPerJob + v.editingHours * v.editingRate) * totalJobs);
       const monthlyProfit = monthlyRevenue - monthlyExpenses;
-      return { residentialRevenue, commercialRevenue, monthlyRevenue, referralFees, monthlyExpenses, monthlyProfit, annualProfit: monthlyProfit * 12, startupPaybackMonths: divide(v.droneCost + v.trainingCost, monthlyProfit) };
+      return { leadsNeeded: divide(totalJobs, v.leadCloseRate / 100), residentialRevenue, commercialRevenue, monthlyRevenue, referralFees, monthlyExpenses, monthlyProfit, annualProfit: monthlyProfit * 12, startupPaybackMonths: divide(v.droneCost + v.trainingCost, monthlyProfit) };
     }
   },
   dumpTrailer: {
@@ -1208,6 +1223,7 @@ radioConstruction: {
       ["repeatCleanings", "Repeat cleanings per customer per year", 1]
     ],
     results: [
+      ["customersNeeded", "Customers needed for the season", "number"],
       ["monthlyRevenue", "Monthly grill cleaning revenue", "money"],
       ["upsellRevenue", "Monthly upsell revenue", "money"],
       ["monthlyExpenses", "Monthly expenses", "money"],
@@ -1223,13 +1239,129 @@ radioConstruction: {
       const monthlyRevenue = baseRevenue + upsellRevenue;
       const monthlyExpenses = (monthlyJobs * (v.suppliesPerJob + v.travelPerJob + v.helperLaborPerJob)) + v.marketing + v.insurance;
       const monthlyProfit = monthlyRevenue - monthlyExpenses;
-      return { monthlyRevenue, upsellRevenue, monthlyExpenses, monthlyProfit, seasonProfit: monthlyProfit * v.seasonMonths, annualProfit: monthlyProfit * v.seasonMonths, profitPerJob: divide(monthlyProfit, monthlyJobs) };
+      return { customersNeeded: divide(monthlyJobs * v.seasonMonths, v.repeatCleanings), monthlyRevenue, upsellRevenue, monthlyExpenses, monthlyProfit, seasonProfit: monthlyProfit * v.seasonMonths, annualProfit: monthlyProfit * v.seasonMonths, profitPerJob: divide(monthlyProfit, monthlyJobs) };
     }
   }
 };
 
+// Service scenarios reviewed September 16, 2026. Source notes are on each page.
+calculators.houseCleaning = {
+  fields: [["price", "Average price per cleaning", 180, "money"], ["jobs", "Jobs per month", 24], ["supplies", "Supplies / water / disposal per cleaning", 12, "money"], ["travel", "Travel cost per cleaning", 10, "money"], ["wear", "Equipment reserve per cleaning", 3, "money"], ["hours", "Owner hours per cleaning including travel", 3.5], ["ownerRate", "Hourly value of owner time", 25, "money"], ["paidLabor", "Paid employee / helper labor per month", 0, "money"], ["overhead", "Other overhead / insurance / marketing per month", 350, "money"], ["startup", "Cash startup investment", 1500, "money"]],
+  results: [["monthlyRevenue", "Monthly revenue", "money"], ["monthlyCosts", "Cash costs and equipment reserve", "money"], ["ownerCash", "Monthly owner earnings before tax", "money", true], ["ownerHours", "Monthly owner hours", "number"], ["ownerHourly", "Owner earnings per hour before tax", "money"], ["laborAllowance", "Value assigned to owner time", "money"], ["monthlyProfit", "Profit after owner-time allowance", "money"], ["breakEvenJobs", "Break-even jobs after owner allowance", "number"], ["paybackMonths", "Startup recovery after owner allowance (months)", "number"]],
+  calculate: (v) => {
+    const visits = false ? v.visits : 1;
+    const monthlyRevenue = v.price * v.jobs;
+    const variablePerUnit = v.supplies + (v.travel + v.wear) * visits;
+    const monthlyCosts = variablePerUnit * v.jobs + v.paidLabor + v.overhead;
+    const ownerCash = monthlyRevenue - monthlyCosts;
+    const ownerHours = v.hours * visits * v.jobs;
+    const laborAllowance = ownerHours * v.ownerRate;
+    const monthlyProfit = ownerCash - laborAllowance;
+    const contribution = v.price - variablePerUnit - v.hours * visits * v.ownerRate;
+    return { monthlyRevenue, monthlyCosts, ownerCash, ownerHours,
+      ownerHourly: divide(ownerCash, ownerHours), laborAllowance, monthlyProfit,
+      breakEvenJobs: Math.ceil(divide(v.overhead + v.paidLabor, contribution)),
+      paybackMonths: v.startup === 0 ? 0 : divide(v.startup, monthlyProfit) };
+  }
+};
+calculators.carpetCleaning = {
+  fields: [["price", "Average price per job", 199, "money"], ["jobs", "Jobs per month", 20], ["supplies", "Supplies / water / disposal per job", 18, "money"], ["travel", "Travel cost per job", 15, "money"], ["wear", "Equipment reserve per job", 12, "money"], ["hours", "Owner hours per job including travel", 2.5], ["ownerRate", "Hourly value of owner time", 25, "money"], ["paidLabor", "Paid employee / helper labor per month", 0, "money"], ["overhead", "Other overhead / insurance / marketing per month", 500, "money"], ["startup", "Cash startup investment", 8000, "money"]],
+  results: [["monthlyRevenue", "Monthly revenue", "money"], ["monthlyCosts", "Cash costs and equipment reserve", "money"], ["ownerCash", "Monthly owner earnings before tax", "money", true], ["ownerHours", "Monthly owner hours", "number"], ["ownerHourly", "Owner earnings per hour before tax", "money"], ["laborAllowance", "Value assigned to owner time", "money"], ["monthlyProfit", "Profit after owner-time allowance", "money"], ["breakEvenJobs", "Break-even jobs after owner allowance", "number"], ["paybackMonths", "Startup recovery after owner allowance (months)", "number"]],
+  calculate: (v) => {
+    const visits = false ? v.visits : 1;
+    const monthlyRevenue = v.price * v.jobs;
+    const variablePerUnit = v.supplies + (v.travel + v.wear) * visits;
+    const monthlyCosts = variablePerUnit * v.jobs + v.paidLabor + v.overhead;
+    const ownerCash = monthlyRevenue - monthlyCosts;
+    const ownerHours = v.hours * visits * v.jobs;
+    const laborAllowance = ownerHours * v.ownerRate;
+    const monthlyProfit = ownerCash - laborAllowance;
+    const contribution = v.price - variablePerUnit - v.hours * visits * v.ownerRate;
+    return { monthlyRevenue, monthlyCosts, ownerCash, ownerHours,
+      ownerHourly: divide(ownerCash, ownerHours), laborAllowance, monthlyProfit,
+      breakEvenJobs: Math.ceil(divide(v.overhead + v.paidLabor, contribution)),
+      paybackMonths: v.startup === 0 ? 0 : divide(v.startup, monthlyProfit) };
+  }
+};
+calculators.dryerVentCleaning = {
+  fields: [["price", "Average price per job", 149, "money"], ["jobs", "Jobs per month", 24], ["supplies", "Supplies / water / disposal per job", 5, "money"], ["travel", "Travel cost per job", 15, "money"], ["wear", "Equipment reserve per job", 8, "money"], ["hours", "Owner hours per job including travel", 1.5], ["ownerRate", "Hourly value of owner time", 25, "money"], ["paidLabor", "Paid employee / helper labor per month", 0, "money"], ["overhead", "Other overhead / insurance / marketing per month", 400, "money"], ["startup", "Cash startup investment", 3000, "money"]],
+  results: [["monthlyRevenue", "Monthly revenue", "money"], ["monthlyCosts", "Cash costs and equipment reserve", "money"], ["ownerCash", "Monthly owner earnings before tax", "money", true], ["ownerHours", "Monthly owner hours", "number"], ["ownerHourly", "Owner earnings per hour before tax", "money"], ["laborAllowance", "Value assigned to owner time", "money"], ["monthlyProfit", "Profit after owner-time allowance", "money"], ["breakEvenJobs", "Break-even jobs after owner allowance", "number"], ["paybackMonths", "Startup recovery after owner allowance (months)", "number"]],
+  calculate: (v) => {
+    const visits = false ? v.visits : 1;
+    const monthlyRevenue = v.price * v.jobs;
+    const variablePerUnit = v.supplies + (v.travel + v.wear) * visits;
+    const monthlyCosts = variablePerUnit * v.jobs + v.paidLabor + v.overhead;
+    const ownerCash = monthlyRevenue - monthlyCosts;
+    const ownerHours = v.hours * visits * v.jobs;
+    const laborAllowance = ownerHours * v.ownerRate;
+    const monthlyProfit = ownerCash - laborAllowance;
+    const contribution = v.price - variablePerUnit - v.hours * visits * v.ownerRate;
+    return { monthlyRevenue, monthlyCosts, ownerCash, ownerHours,
+      ownerHourly: divide(ownerCash, ownerHours), laborAllowance, monthlyProfit,
+      breakEvenJobs: Math.ceil(divide(v.overhead + v.paidLabor, contribution)),
+      paybackMonths: v.startup === 0 ? 0 : divide(v.startup, monthlyProfit) };
+  }
+};
+calculators.poolCleaning = {
+  fields: [["price", "Monthly fee per pool", 180, "money"], ["jobs", "Recurring pool customers", 30], ["supplies", "Chemicals per pool per month", 40, "money"], ["visits", "Visits per pool per month", 4.3333], ["travel", "Travel cost per visit", 5, "money"], ["wear", "Equipment reserve per visit", 1, "money"], ["hours", "Owner hours per visit including travel", 0.5], ["ownerRate", "Hourly value of owner time", 25, "money"], ["paidLabor", "Paid employee / helper labor per month", 0, "money"], ["overhead", "Other overhead / insurance / marketing per month", 500, "money"], ["startup", "Cash startup investment", 3500, "money"]],
+  results: [["monthlyRevenue", "Monthly revenue", "money"], ["monthlyCosts", "Cash costs and equipment reserve", "money"], ["ownerCash", "Monthly owner earnings before tax", "money", true], ["ownerHours", "Monthly owner hours", "number"], ["ownerHourly", "Owner earnings per hour before tax", "money"], ["laborAllowance", "Value assigned to owner time", "money"], ["monthlyProfit", "Profit after owner-time allowance", "money"], ["breakEvenJobs", "Break-even pool customers after owner allowance", "number"], ["paybackMonths", "Startup recovery after owner allowance (months)", "number"]],
+  calculate: (v) => {
+    const visits = true ? v.visits : 1;
+    const monthlyRevenue = v.price * v.jobs;
+    const variablePerUnit = v.supplies + (v.travel + v.wear) * visits;
+    const monthlyCosts = variablePerUnit * v.jobs + v.paidLabor + v.overhead;
+    const ownerCash = monthlyRevenue - monthlyCosts;
+    const ownerHours = v.hours * visits * v.jobs;
+    const laborAllowance = ownerHours * v.ownerRate;
+    const monthlyProfit = ownerCash - laborAllowance;
+    const contribution = v.price - variablePerUnit - v.hours * visits * v.ownerRate;
+    return { monthlyRevenue, monthlyCosts, ownerCash, ownerHours,
+      ownerHourly: divide(ownerCash, ownerHours), laborAllowance, monthlyProfit,
+      breakEvenJobs: Math.ceil(divide(v.overhead + v.paidLabor, contribution)),
+      paybackMonths: v.startup === 0 ? 0 : divide(v.startup, monthlyProfit) };
+  }
+};
+calculators.trashBinCleaning = {
+  fields: [["price", "Price per two-bin stop", 24, "money"], ["jobs", "Monthly customer stops", 150], ["supplies", "Supplies / water / disposal per stop", 2, "money"], ["travel", "Travel cost per stop", 2, "money"], ["wear", "Equipment reserve per stop", 2, "money"], ["hours", "Owner hours per stop including travel", 0.2], ["ownerRate", "Hourly value of owner time", 25, "money"], ["paidLabor", "Paid employee / helper labor per month", 0, "money"], ["overhead", "Other overhead / insurance / marketing per month", 600, "money"], ["startup", "Cash startup investment", 15000, "money"]],
+  results: [["monthlyRevenue", "Monthly revenue", "money"], ["monthlyCosts", "Cash costs and equipment reserve", "money"], ["ownerCash", "Monthly owner earnings before tax", "money", true], ["ownerHours", "Monthly owner hours", "number"], ["ownerHourly", "Owner earnings per hour before tax", "money"], ["laborAllowance", "Value assigned to owner time", "money"], ["monthlyProfit", "Profit after owner-time allowance", "money"], ["breakEvenJobs", "Break-even monthly stops after owner allowance", "number"], ["paybackMonths", "Startup recovery after owner allowance (months)", "number"]],
+  calculate: (v) => {
+    const visits = false ? v.visits : 1;
+    const monthlyRevenue = v.price * v.jobs;
+    const variablePerUnit = v.supplies + (v.travel + v.wear) * visits;
+    const monthlyCosts = variablePerUnit * v.jobs + v.paidLabor + v.overhead;
+    const ownerCash = monthlyRevenue - monthlyCosts;
+    const ownerHours = v.hours * visits * v.jobs;
+    const laborAllowance = ownerHours * v.ownerRate;
+    const monthlyProfit = ownerCash - laborAllowance;
+    const contribution = v.price - variablePerUnit - v.hours * visits * v.ownerRate;
+    return { monthlyRevenue, monthlyCosts, ownerCash, ownerHours,
+      ownerHourly: divide(ownerCash, ownerHours), laborAllowance, monthlyProfit,
+      breakEvenJobs: Math.ceil(divide(v.overhead + v.paidLabor, contribution)),
+      paybackMonths: v.startup === 0 ? 0 : divide(v.startup, monthlyProfit) };
+  }
+};
+calculators.solarPanelCleaning = {
+  fields: [["price", "Average price per job", 200, "money"], ["jobs", "Jobs per month", 16], ["supplies", "Supplies / water / disposal per job", 10, "money"], ["travel", "Travel cost per job", 15, "money"], ["wear", "Equipment reserve per job", 10, "money"], ["hours", "Owner hours per job including travel", 2], ["ownerRate", "Hourly value of owner time", 25, "money"], ["paidLabor", "Paid employee / helper labor per month", 0, "money"], ["overhead", "Other overhead / insurance / marketing per month", 450, "money"], ["startup", "Cash startup investment", 4000, "money"]],
+  results: [["monthlyRevenue", "Monthly revenue", "money"], ["monthlyCosts", "Cash costs and equipment reserve", "money"], ["ownerCash", "Monthly owner earnings before tax", "money", true], ["ownerHours", "Monthly owner hours", "number"], ["ownerHourly", "Owner earnings per hour before tax", "money"], ["laborAllowance", "Value assigned to owner time", "money"], ["monthlyProfit", "Profit after owner-time allowance", "money"], ["breakEvenJobs", "Break-even jobs after owner allowance", "number"], ["paybackMonths", "Startup recovery after owner allowance (months)", "number"]],
+  calculate: (v) => {
+    const visits = false ? v.visits : 1;
+    const monthlyRevenue = v.price * v.jobs;
+    const variablePerUnit = v.supplies + (v.travel + v.wear) * visits;
+    const monthlyCosts = variablePerUnit * v.jobs + v.paidLabor + v.overhead;
+    const ownerCash = monthlyRevenue - monthlyCosts;
+    const ownerHours = v.hours * visits * v.jobs;
+    const laborAllowance = ownerHours * v.ownerRate;
+    const monthlyProfit = ownerCash - laborAllowance;
+    const contribution = v.price - variablePerUnit - v.hours * visits * v.ownerRate;
+    return { monthlyRevenue, monthlyCosts, ownerCash, ownerHours,
+      ownerHourly: divide(ownerCash, ownerHours), laborAllowance, monthlyProfit,
+      breakEvenJobs: Math.ceil(divide(v.overhead + v.paidLabor, contribution)),
+      paybackMonths: v.startup === 0 ? 0 : divide(v.startup, monthlyProfit) };
+  }
+};
+
 function divide(a, b) {
-  return b > 0 ? a / b : 0;
+  return Number.isFinite(a) && Number.isFinite(b) && b > 0 ? a / b : NaN;
 }
 
 function cleanNumber(value) {
@@ -1238,7 +1370,7 @@ function cleanNumber(value) {
 }
 
 function format(value, type) {
-  if (!Number.isFinite(value)) return type === "money" ? MONEY.format(0) : "0";
+  if (!Number.isFinite(value)) return "N/A";
   if (type === "money") return MONEY.format(value);
   return NUMBER.format(value);
 }
@@ -1277,7 +1409,10 @@ function initCalculator() {
     const calculated = config.calculate(values);
     Object.entries(calculated).forEach(([id, value]) => {
       const node = results.querySelector(`[data-result="${id}"]`);
-      if (node) node.textContent = format(value, node.dataset.type);
+      if (node) {
+        const wholeUnits = /^(breakEven|jobsNeeded|leadsNeeded|customersNeeded|jobsToRecover|callsToRecover|eventsToPayOff|eventsToRecover|carsToPayOff|jobsToPayOff)/.test(id);
+        node.textContent = format(wholeUnits && Number.isFinite(value) ? Math.ceil(value) : value, node.dataset.type);
+      }
     });
   }
 

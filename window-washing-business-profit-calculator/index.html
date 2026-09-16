@@ -12,7 +12,7 @@
   <meta property="og:url" content="https://www.startupprofitcalculators.com/window-washing-business-profit-calculator/" />
   <link rel="stylesheet" href="../styles.css" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do you calculate window washing business profit?","acceptedAnswer":{"@type":"Answer","text":"Calculate revenue per job from the number of windows and price per window. Subtract supplies, labor, and travel to estimate profit per job, then multiply by monthly job volume and subtract monthly overhead."}},{"@type":"Question","name":"What should a window washing business include in its costs?","acceptedAnswer":{"@type":"Answer","text":"Include cleaning solution, towels, squeegees, poles, water-fed equipment, ladders, labor, fuel, insurance, software, advertising, callbacks, equipment replacement, and owner compensation."}},{"@type":"Question","name":"Should window washing be priced per window or per job?","acceptedAnswer":{"@type":"Answer","text":"Either method can work. Per-window pricing is easy to estimate, while a minimum service charge and adjustments for access, height, screens, tracks, construction debris, and difficult glass can protect the job minimum."}},{"@type":"Question","name":"Are the calculator results guaranteed?","acceptedAnswer":{"@type":"Answer","text":"No. The calculator is a planning tool. Actual results depend on local prices, job mix, travel, weather, sales, labor efficiency, insurance, taxes, and demand."}}]}</script>
-</head>
+<script src="../calculator-validation.js" defer></script></head>
 <body class="theme-pressure" data-calculator>
   <header class="site-header"><nav class="nav"><a class="brand" href="../index.html"><span class="brand-mark">SC</span><span>Startup Profit Calculators</span></a><div class="nav-links"><a href="#calculator">Calculator</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div></nav></header>
   <main>
@@ -33,7 +33,7 @@
   <footer class="site-footer"><div class="footer-inner"><p><strong>Startup Profit Calculators</strong></p><p><a href="../index.html">All calculators</a></p></div></footer>
   <script>
     const money = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
-    function value(id) { return Number(document.getElementById(id).value) || 0; }
+    function value(id) { const x=Number(document.getElementById(id).value);return Number.isFinite(x)?Math.max(0,x):0; }
     function output(id, result) { document.getElementById(id).textContent = result; }
     function calculate() {
       const revenue = value('windows') * value('price');

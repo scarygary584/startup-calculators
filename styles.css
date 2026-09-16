@@ -1220,3 +1220,17 @@ body[data-calculator].theme-lawn {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
+
+/* Readable labels and clear input errors without changing calculator themes. */
+body[data-calculator] label,
+body[data-calculator] .result-row span { font-size: .875rem; letter-spacing: .025em; }
+.calculator-input-notice { grid-column: 1 / -1; padding: 12px 16px; border: 2px solid #9f1239; border-radius: 8px; background: #fff1f2; color: #881337; }
+input[aria-invalid="true"] { outline: 2px solid #be123c; }
+body[data-calculator] .result-row strong { overflow-wrap: anywhere; }
+body.calculator-new .hero { padding-top: 32px; padding-bottom: 20px; display: block; }
+body.calculator-new .hero h1 { font-size: clamp(1.85rem, 4vw, 3rem); }
+body.calculator-new .hero .lede { max-width: 850px; }
+.source-table { width: 100%; border-collapse: collapse; }
+.source-table th, .source-table td { text-align: left; padding: 12px 8px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.source-table a { overflow-wrap: anywhere; }
+@media (max-width: 719px) { .source-table { font-size: .875rem; } .source-table th, .source-table td { padding: 10px 5px; } }
