@@ -12,7 +12,7 @@
   <meta property="og:url" content="https://www.startupprofitcalculators.com/ai-voice-agent-business-profit-calculator/" />
   <link rel="stylesheet" href="../styles.css" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I estimate profit for an AI voice agent business?","acceptedAnswer":{"@type":"Answer","text":"Estimate monthly client retainers, setup fees, call volume, average minutes per call, voice or telephony cost per minute, software costs, phone numbers, outreach costs, and other monthly expenses. Profit is revenue minus operating costs."}},{"@type":"Question","name":"What costs should an AI receptionist business include?","acceptedAnswer":{"@type":"Answer","text":"Common costs include voice agent platform fees, call minutes, phone numbers, CRM or automation software, call recording/storage, testing minutes, client support time, outreach tools, and payment processing."}},{"@type":"Question","name":"Should I charge a setup fee for AI voice agents?","acceptedAnswer":{"@type":"Answer","text":"Many agencies include a setup fee because onboarding usually requires business information, call scripts, FAQs, routing rules, testing, and revisions. Whether the market will accept it depends on the niche and offer."}},{"@type":"Question","name":"Can this calculator guarantee AI voice agent income?","acceptedAnswer":{"@type":"Answer","text":"No. This is a rough planning calculator only. Real results depend on sales ability, niche demand, retention, call quality, software reliability, pricing, support workload, and client churn."}}]}</script>
-</head>
+<script src="../calculator-validation.js" defer></script></head>
 <body class="theme-equipment">
 <header class="site-header"><nav class="nav"><a class="brand" href="../"><span class="brand-mark">SC</span><span>Startup Calculators</span></a><div class="nav-links"><a href="#calculator">Calculator</a><a href="#faq">FAQ</a></div></nav></header>
 <main>
@@ -111,7 +111,7 @@
   <section class="section" id="faq"><h2>FAQ</h2><div class="faq-list"><details><summary>What should I charge for an AI voice agent?</summary><p>Pricing depends on niche value, call volume, complexity, support workload, and the quality of the agent. Many offers combine a setup fee with a monthly retainer, but the market will decide what sticks.</p></details><details><summary>What costs matter most?</summary><p>Call minutes, voice agent platform fees, CRM tools, phone numbers, outreach tools, testing time, client support, and churn are the big moving parts.</p></details><details><summary>Is an AI voice agent business pure profit?</summary><p>No. Software and call costs matter, but support time is often the hidden cost. Setup, testing, prompt changes, client updates, and troubleshooting can turn a cheap retainer into a tiny hamster wheel.</p></details><details><summary>Can I use this for AI receptionist pricing?</summary><p>Yes. Adjust client count, retainer, setup fee, call volume, and cost per minute to model AI receptionist, missed-call capture, appointment intake, or after-hours call handling offers.</p></details></div></section>
   <section class="section"><h2>Related calculators</h2><div class="related-links"><a href="../ai-business-calculators/">AI Business Calculators</a><a href="../ai-chatbot-agency-profit-calculator/">AI Chatbot Agency</a><a href="../ai-automation-agency-pricing-calculator/">AI Automation Agency</a><a href="../ai-api-cost-calculator/">AI API Cost</a><a href="../first-100k-service-business-calculator/">First $100K Service Goal</a></div></section>
   <section class="section"><div class="disclaimer">These calculators are rough planning tools. They are not legal, tax, financial, or licensing advice. AI software pricing, call costs, privacy rules, recording laws, taxes, and real-world client results may vary.</div></section>
-</main>
+<section class="section"><div class="content-card"><h2>Recurring break-even assumptions</h2><p>Break-even uses recurring retainer revenue only; one-time setup fees are excluded. Per-client usage or support costs are deducted from each retainer before dividing fixed monthly costs. Monthly budget inputs stay fixed at the amounts entered. Increase those budgets if a larger client base would increase staffing or software costs.</p></div></section></main>
 <footer class="site-footer"><div class="footer-inner"><p><strong>Startup Calculators</strong></p><p>Run the numbers before you buy the machine.</p></div></footer>
 <script>
 (function(){
@@ -132,7 +132,7 @@
   ];
   results.innerHTML = rows.map(([id, label, type, featured]) => `<div class="result-row${featured ? ' featured' : ''}"><span>${label}</span><strong data-result="${id}" data-type="${type}">0</strong></div>`).join('');
   function val(id){ const n = Number.parseFloat(document.getElementById(id).value); return Number.isFinite(n) && n > 0 ? n : 0; }
-  function fmt(value, type){ return type === 'money' ? money.format(value || 0) : number.format(value || 0); }
+  function fmt(value, type){ return !Number.isFinite(value) ? 'N/A' : type === 'money' ? money.format(value) : number.format(value); }
   function calc(){
     const clients = val('clients');
     const retainer = val('retainer');
@@ -156,7 +156,8 @@
     const monthlyExpenses = voiceCosts + platformCost + phoneNumbers + crmSoftware + outreach + supportCost;
     const netMonthlyProfit = totalMonthlyRevenue - monthlyExpenses;
     const profitPerClient = clients > 0 ? (monthlyRecurringRevenue - monthlyExpenses) / clients : 0;
-    const breakEvenClients = retainer > 0 ? monthlyExpenses / retainer : 0;
+    const contribution = retainer - callsPerClient * minutesPerCall * costPerMinute;
+    const breakEvenClients = contribution > 0 ? Math.ceil((platformCost + phoneNumbers + crmSoftware + outreach + supportCost) / contribution) : NaN;
     const data = { monthlyRecurringRevenue, setupRevenue, totalMonthlyRevenue, monthlyCallMinutes, voiceCosts, monthlyExpenses, netMonthlyProfit, profitPerClient, breakEvenClients };
     Object.entries(data).forEach(([id, value]) => {
       const node = results.querySelector(`[data-result="${id}"]`);
