@@ -1019,7 +1019,7 @@ radioConstruction: {
   washerDryerRental: {
     fields: [
       ["monthlyRentalPerSet", "Average monthly rental per set", 150, "money"],
-      ["rentedSets", "Number of rented sets", 25],
+      ["rentedSets", "Number of rented sets", 67],
       ["acquisitionCostPerSet", "Average acquisition cost per set", 250, "money"],
       ["deliveryInstallPerSet", "Delivery/install cost per set", 75, "money"],
       ["repairReservePerSet", "Monthly repair reserve per set", 15, "money"],
