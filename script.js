@@ -1018,15 +1018,16 @@ radioConstruction: {
   },
   washerDryerRental: {
     fields: [
-      ["monthlyRentalPerSet", "Average monthly rental per set", 150, "money"],
-      ["rentedSets", "Number of rented sets", 67],
+      ["monthlyRentalPerSet", "Average monthly rental per set", 85, "money"],
+      ["rentedSets", "Number of rented sets", 120],
       ["acquisitionCostPerSet", "Average acquisition cost per set", 250, "money"],
       ["deliveryInstallPerSet", "Delivery/install cost per set", 75, "money"],
       ["repairReservePerSet", "Monthly repair reserve per set", 15, "money"],
       ["storage", "Storage/month", 200, "money"],
+      ["insurance", "Insurance/month", 58.33, "money"],
       ["truckFuel", "Truck/fuel/month", 250, "money"],
       ["paymentProcessing", "Payment processing/month", 50, "money"],
-      ["churnPercent", "Churn percentage per month", 5, "percent"],
+      ["churnPercent", "Churn percentage per month", 1.5, "percent"],
       ["newSetsPerMonth", "New sets added per month", 5]
     ],
     results: [
@@ -1044,7 +1045,7 @@ radioConstruction: {
       const monthlyRevenue = v.monthlyRentalPerSet * v.rentedSets;
       const repairReserve = v.repairReservePerSet * v.rentedSets;
       const newSetInvestment = (v.acquisitionCostPerSet + v.deliveryInstallPerSet) * v.newSetsPerMonth;
-      const monthlyExpenses = repairReserve + v.storage + v.truckFuel + v.paymentProcessing;
+      const monthlyExpenses = repairReserve + v.storage + v.truckFuel + v.paymentProcessing + v.insurance;
       const monthlyProfit = monthlyRevenue - monthlyExpenses;
       const startupCost = (v.acquisitionCostPerSet + v.deliveryInstallPerSet) * v.rentedSets;
       return { cashAfterGrowth: monthlyProfit - newSetInvestment, monthlyRevenue, repairReserve, newSetInvestment, monthlyExpenses, monthlyProfit, annualProfit: monthlyProfit * 12, churnedSets: v.rentedSets * (v.churnPercent / 100), startupPaybackMonths: divide(startupCost, monthlyProfit) };
