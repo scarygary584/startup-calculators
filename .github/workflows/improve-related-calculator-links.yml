@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   improve-related-links:
-    if: ${{ !contains(github.event.head_commit.message, '[skip related links]') }}
+    if: ${{ false }} # Retired: calculator pages intentionally contain tools only.
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository

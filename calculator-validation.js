@@ -29,10 +29,4 @@
       }
     }, true);
   }
-  if (forms.length && document.querySelector('body[data-calculator]')) {
-    const note = document.createElement('section');
-    note.className = 'section';
-    note.innerHTML = '<div class="disclaimer"><strong>About these estimates:</strong> Results subtract only the costs listed. Unless a source is cited, defaults are illustrative scenarios, not measured local averages or a prediction of demand. Include your actual overhead and paid labor; owner earnings can include payment for your own work. Taxes and financing are excluded unless entered. N/A means a ratio or payback cannot be calculated at those inputs. Annualized results assume the same activity continues.</div>';
-    document.querySelector('main')?.append(note);
-  }
 })();

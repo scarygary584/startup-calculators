@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Startup Profit Calculator | Free Business Calculator</title>
+  <meta name="description" content="Use a free startup profit calculator to estimate startup costs, monthly expenses, revenue, break-even jobs, and potential monthly profit. Browse small business calculators by category.">
+  <link rel="canonical" href="https://www.startupprofitcalculators.com/startup-profit-calculator/">
+  <meta property="og:title" content="Startup Profit Calculator | Free Business Calculators">
+  <meta property="og:description" content="Estimate startup costs, monthly expenses, revenue, break-even point, and potential monthly profit.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.startupprofitcalculators.com/startup-profit-calculator/">
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../home-calculator-frame.css">
+<script src="../calculator-validation.js" defer></script><link rel="stylesheet" href="../simple-calculators.css"></head>
+<body class="theme-home simple-calculator-page"><header class="simple-header"><a href="../#calculators">All calculators</a></header><main class="simple-main"><h1>Startup Profit Calculator</h1><section class="section" id="calculator"><div class="home-calculator-panel"><div class="calculator-shell" aria-live="polite">
+    <div class="calculator-shell-top"><div><span class="calculator-shell-name">Startup Profit</span><span class="calculator-shell-model">Desktop Model SPC-01</span></div><div class="calculator-shell-solar" aria-hidden="true"></div></div>
+    <div class="calculator-shell-display"><span class="display-caption">Estimated monthly profit</span><strong class="display-value" id="monthlyProfitResult">$0</strong><div class="display-meta"><span>Monthly revenue <strong id="monthlyRevenueResult">$0</strong></span><span>Monthly gross profit <strong id="grossProfitResult">$0</strong></span></div></div>
+    <form class="calculator-keypad" id="startupProfitForm">
+      <div class="calc-key-field"><label for="startupCosts">Startup costs</label><input id="startupCosts" type="number" value="5000" min="0" step="100"></div>
+      <div class="calc-key-field"><label for="monthlyExpenses">Monthly expenses</label><input id="monthlyExpenses" type="number" value="1200" min="0" step="50"></div>
+      <div class="calc-key-field wide"><label for="averageSale">Average sale or job price</label><input id="averageSale" type="number" value="150" min="0" step="10"></div>
+      <div class="calc-key-field"><label for="jobsPerMonth">Jobs or sales per month</label><input id="jobsPerMonth" type="number" value="30" min="0" step="1"></div>
+      <div class="calc-key-field"><label for="jobCost">Average cost per job</label><input id="jobCost" type="number" value="35" min="0" step="5"></div>
+    </form>
+    <div class="calculator-readout-grid"><div class="mini-readout"><span>Break-even jobs</span><strong id="breakEvenJobsResult">0</strong></div><div class="mini-readout"><span>Payback time</span><strong id="paybackResult">0</strong></div></div>
+    </div></div>
+</section></main><footer class="simple-footer"><a href="../#calculators">All calculators</a></footer><script>(function(){const money=new Intl.NumberFormat("en-US",{style:"currency",currency:"USD",maximumFractionDigits:0});const number=new Intl.NumberFormat("en-US",{maximumFractionDigits:1});const fields=["startupCosts","monthlyExpenses","averageSale","jobsPerMonth","jobCost"];const getValue=id=>{const input=document.getElementById(id);const value=Number(input&&input.value?input.value:0);return Number.isFinite(value)?Math.max(0,value):0};const setText=(id,value)=>{const el=document.getElementById(id);if(el)el.textContent=value};const calculate=()=>{const startupCosts=getValue("startupCosts");const monthlyExpenses=getValue("monthlyExpenses");const averageSale=getValue("averageSale");const jobsPerMonth=getValue("jobsPerMonth");const jobCost=getValue("jobCost");const monthlyRevenue=averageSale*jobsPerMonth;const monthlyJobCosts=jobCost*jobsPerMonth;const grossProfit=monthlyRevenue-monthlyJobCosts;const monthlyProfit=grossProfit-monthlyExpenses;const profitPerJob=averageSale-jobCost;const breakEvenJobs=profitPerJob>0?Math.ceil(monthlyExpenses/profitPerJob):0;const paybackMonths=monthlyProfit>0?startupCosts/monthlyProfit:0;setText("monthlyProfitResult",money.format(monthlyProfit));setText("monthlyRevenueResult",money.format(monthlyRevenue));setText("grossProfitResult",money.format(grossProfit));setText("breakEvenJobsResult",profitPerJob>0?number.format(breakEvenJobs):"N/A");setText("paybackResult",monthlyProfit>0?number.format(paybackMonths)+" months":"N/A")};fields.forEach(id=>{const input=document.getElementById(id);if(input)input.addEventListener("input",calculate)});calculate()})();</script>
+</body></html>

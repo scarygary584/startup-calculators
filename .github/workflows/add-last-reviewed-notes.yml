@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   add-last-reviewed:
-    if: ${{ !contains(github.event.head_commit.message, '[skip reviewed add]') }}
+    if: ${{ false }} # Retired: calculator pages intentionally contain tools only.
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
