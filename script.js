@@ -614,7 +614,7 @@ const calculators = {
   },
   coldCake: {
     fields: [
-      ["giftCost", "Cake/gift cost per prospect", 70, "money"],
+      ["giftCost", "Cake and box cost per recipient", 70, "money"],
       ["deliveryCost", "Delivery cost per prospect", 12, "money"],
       ["prospects", "Number of prospects", 100],
       ["bookedMeetingRate", "Booked meeting rate percent", 20, "percent"],
@@ -630,7 +630,7 @@ const calculators = {
       ["revenue", "Estimated revenue", "money"],
       ["profit", "Estimated profit after campaign cost", "money", true],
       ["costPerMeeting", "Cost per booked meeting", "money"],
-      ["costPerCustomer", "Cost per acquired customer", "money"],
+      ["costPerCustomer", "Cake and delivery cost per new customer", "money"],
       ["roi", "ROI percent", "number"]
     ],
     calculate: (v) => {
