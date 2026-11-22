@@ -788,18 +788,18 @@ const calculators = {
     fields: [
       ["serviceCalls", "Service calls per month", 55],
       ["diagnosticFee", "Diagnostic fee", 95, "money"],
-      ["repairCloseRate", "Repair close rate percent", 65, "percent"],
-      ["repairLaborProfit", "Additional labor contribution per accepted repair", 140, "money"],
-      ["partsMarkupProfit", "Average parts markup profit", 45, "money"],
+      ["repairCloseRate", "Service calls that become repairs (%)", 65, "percent"],
+      ["repairLaborProfit", "Labor earnings per repair (excluding diagnostic fee)", 140, "money"],
+      ["partsMarkupProfit", "Earnings on parts per repair", 45, "money"],
       ["fuelPerCall", "Fuel/travel per call", 12, "money"],
       ["softwareInsurance", "Monthly software/insurance", 450, "money"],
       ["toolsCost", "Tools/test equipment cost", 3500, "money"]
     ],
     results: [
-      ["diagnosticRevenue", "Diagnostic revenue", "money"],
-      ["closedRepairs", "Estimated closed repairs", "number"],
-      ["repairRevenue", "Additional repair contribution", "money"],
-      ["monthlyRevenue", "Diagnostic fees plus repair contribution", "money"],
+      ["diagnosticRevenue", "Income from diagnostic fees", "money"],
+      ["closedRepairs", "Repairs per month", "number"],
+      ["repairRevenue", "Earnings from repairs", "money"],
+      ["monthlyRevenue", "Total earnings before monthly expenses", "money"],
       ["monthlyCosts", "Monthly costs", "money"],
       ["monthlyProfit", "Estimated monthly profit before taxes", "money", true],
       ["monthsToPayOff", "Months to pay off tools", "number"]
